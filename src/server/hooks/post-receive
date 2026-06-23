@@ -13,12 +13,12 @@ do
 
     note="$(git notes show "$newrev" 2>/dev/null || true)"
     if [[ -z "$note" ]]; then
-        echo "Keine Note gefunden für $newrev"
+        echo "Error: No git note found for $newrev"
         continue
     fi
     cd "$WORK_DIR"
     if [[ ! -x "$BINARY" ]]; then
-        echo "Binary nicht gefunden oder nicht ausführbar: $BINARY"
+        echo "binary not found or binary not executable under given path: $BINARY"
         exit 1
     fi
     "$BINARY" -c "$note"

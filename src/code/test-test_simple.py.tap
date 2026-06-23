@@ -1,7 +1,0 @@
-# TAP results for test/test_simple.py
-ok 1 test/test_simple.py::test_add_item
-ok 2 test/test_simple.py::test_removing_items
-ok 3 test/test_simple.py::test_skipping # SKIP this test will be skipped, to see how pytest handles skipped tests in JUnit XML reports
-ok 4 test/test_simple.py::test_simple
-ok 5 test/test_simple.py::test_simple_two
-1..5
