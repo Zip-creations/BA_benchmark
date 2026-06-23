@@ -1,0 +1,10 @@
+{
+    "testDiscoveryPath": {
+        "command": "./testDiscovery.sh",
+        "args": []
+    },
+    "testExecutionPath": {
+        "command": "./test.sh",
+        "args": []
+    }
+}

@@ -1,0 +1,11 @@
+.direnv/
+
+#vs code
+.vscode/
+.idea/
+*.code-workspace
+
+#python
+__pycache__/
+*.pyc
+.pytest_cache/

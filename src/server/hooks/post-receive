@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+HOOK_FILE="$(readlink -f "$0")"
+SCRIPT_DIR="$(cd "$(dirname "$HOOK_FILE")" && pwd)"
+WORK_DIR="$SCRIPT_DIR/../../code"  # dir which contains the binary and cofig.json
+BINARY="$WORK_DIR/testAuditor"
+
+while read -r oldrev newrev refname
+do
+    if [[ "$refname" == refs/notes/* ]]; then
+        continue
+    fi
+
+    note="$(git notes show "$newrev" 2>/dev/null || true)"
+    if [[ -z "$note" ]]; then
+        echo "Keine Note gefunden für $newrev"
+        continue
+    fi
+    cd "$WORK_DIR"
+    if [[ ! -x "$BINARY" ]]; then
+        echo "Binary nicht gefunden oder nicht ausführbar: $BINARY"
+        exit 1
+    fi
+    "$BINARY" -c "$note"
+done
