@@ -12,3 +12,4 @@ Liefert dem Tool die Pfade für testDiscovery.sh und testExecution.sh
 - [post-receive](/src/server/hooks/post-receive)
 Bindet das Tool in den Ablauf der Pipeline ein.
 In dieser Demo wird ein außerhalb des Projektes liegendes lokales repository genutzt, um den hook bei einem push zu triggern.
+ 
