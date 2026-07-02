@@ -25,7 +25,6 @@ ta-from-discovery() {
         echo "testDiscovery failed" >&2
         return 1
     fi
-
     printf '%s' "$discovery" | ta-from-wrapper "$commit"
 }
 
@@ -37,7 +36,6 @@ ta-from-wrapper() {
     local input_file
     input_file="$(mktemp)"
     trap 'rm -f "$input_file"' RETURN
-
     {
         printf '%s\n' '<?xml version="1.0" encoding="utf-8"?>'
         printf '%s\n' '<testAuditorInput version="1.0">'
@@ -87,11 +85,11 @@ ta-from-auditor() {
     fi
 
     echo "testAuditor picked the following tests for execution:" >&2
-    if [[ -n "$auditor_output" ]]; then
-        printf '%s\n' "$auditor_output" >&2
-    else
-        echo "(none)" >&2
-    fi
+    # if [[ -n "$auditor_output" ]]; then
+    printf '%s\n' "$auditor_output" >&2
+    # else
+    #     echo "(none)" >&2
+    # fi
     # keep stdin clean if no tests were selected
     printf '%s' "$auditor_output" | ta-from-execution "$commit"
 }
