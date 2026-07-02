@@ -16,6 +16,5 @@
                 reports</skipped>
         </testcase>
         <testcase classname="test.test_simple" name="test_simple" time="0.000" />
-        <!-- <testcase classname="test.test_simple" name="test_simple_two" time="0.000" /> -->
     </testsuite>
 </testsuites>
