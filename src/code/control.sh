@@ -5,6 +5,15 @@ test-all() {
     ta-from-discovery "$commit"
 }
 
+test-pick() {
+    if [[ "$#" -eq 0 ]]; then
+        echo "Usage: test-pick testname..." >&2
+        return 1
+    fi
+
+    printf '%s\n' "$@" | ta-from-execution HEAD
+}
+
 ta-from-discovery() {
     local commit="${1:-HEAD}"
     local discovery_script="./testDiscovery.sh"
