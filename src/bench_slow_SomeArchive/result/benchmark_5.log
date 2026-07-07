@@ -1,0 +1,65 @@
+benchmark name=bench_slow_SomeArchive
+benchmark absolute path=/home/ruben/dev/bachelor/project/benchmark/src/bench_slow_SomeArchive
+timestamp=2026-07-08T00:55:23+02:00
+
+== full run ==
+description=This run is represents the traditional way by always executing every testcase
+full_status=0
+full_duration_ms=3290
+full_tests=10
+
+report from pytest:
+============================= test session starts ==============================
+platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0
+rootdir: /home/ruben/dev/bachelor/project/benchmark/src/bench_slow_SomeArchive
+plugins: tap-3.5, json-report-1.5.0, metadata-3.1.1
+collected 10 items
+
+test_simple.py .                                                         [ 10%]
+test_simple2.py .........                                                [100%]
+
+--- generated xml file: /tmp/nix-shell.UGLi2M/tmp.uXgoZeA9Nr/full-report.xml ---
+============================== 10 passed in 3.13s ==============================
+pytest test duration in ms=3290
+
+== optimized run ==
+description=This run makes use of the process that was developed in the bachelor thesis
+optimized_status=0
+optimized_total_duration_ms=1291
+optimized_tests=5
+-- optimized stderr --
+reported testcases by testDiscovery= 10
+selected testcases by testAuditor=5
+-- selected tests --
+test_simple.py::test_simple
+test_simple2.py::test_simple_2
+test_simple2.py::test_simple_3
+test_simple2.py::test_simple_4
+test_simple2.py::test_simple_5
+
+report from testExecution:
+testExecution received 5 tests
+============================= test session starts ==============================
+platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0
+rootdir: /home/ruben/dev/bachelor/project/benchmark/src/bench_slow_SomeArchive
+plugins: tap-3.5, json-report-1.5.0, metadata-3.1.1
+collected 5 items
+
+test_simple.py .                                                         [ 20%]
+test_simple2.py ....                                                     [100%]
+
+----------- generated xml file: /tmp/nix-shell.UGLi2M/tmp.Q9wX6xi2ZR -----------
+============================== 5 passed in 0.93s ===============================
+pytest test duration in ms=1097
+
+== summary ==
+full run total executed tests=10
+full run total duration in ms=3290
+full run exit status=0
+
+optimized run total executed tests=5
+optimized run total duration in ms=1291
+optimized run exit status=0
+optimized to full run relation=0.3924
+
+benchmark terminated with error=false

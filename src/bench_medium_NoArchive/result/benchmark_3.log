@@ -1,0 +1,70 @@
+benchmark name=bench_medium_NoArchive
+benchmark absolute path=/home/ruben/dev/bachelor/project/benchmark/src/bench_medium_NoArchive
+timestamp=2026-07-08T00:54:33+02:00
+
+== full run ==
+description=This run is represents the traditional way by always executing every testcase
+full_status=0
+full_duration_ms=478
+full_tests=10
+
+report from pytest:
+============================= test session starts ==============================
+platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0
+rootdir: /home/ruben/dev/bachelor/project/benchmark/src/bench_medium_NoArchive
+plugins: tap-3.5, json-report-1.5.0, metadata-3.1.1
+collected 10 items
+
+test_simple.py .                                                         [ 10%]
+test_simple2.py .........                                                [100%]
+
+--- generated xml file: /tmp/nix-shell.UGLi2M/tmp.vH10FRUoz1/full-report.xml ---
+============================== 10 passed in 0.33s ==============================
+pytest test duration in ms=478
+
+== optimized run ==
+description=This run makes use of the process that was developed in the bachelor thesis
+optimized_status=0
+optimized_total_duration_ms=676
+optimized_tests=10
+-- optimized stderr --
+reported testcases by testDiscovery= 10
+selected testcases by testAuditor=10
+-- selected tests --
+test_simple.py::test_simple
+test_simple2.py::test_simple_2
+test_simple2.py::test_simple_3
+test_simple2.py::test_simple_4
+test_simple2.py::test_simple_5
+test_simple2.py::test_simple_6
+test_simple2.py::test_simple_7
+test_simple2.py::test_simple_8
+test_simple2.py::test_simple_9
+test_simple2.py::test_simple_10
+
+report from testExecution:
+testExecution received 10 tests
+============================= test session starts ==============================
+platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0
+rootdir: /home/ruben/dev/bachelor/project/benchmark/src/bench_medium_NoArchive
+plugins: tap-3.5, json-report-1.5.0, metadata-3.1.1
+collected 10 items
+
+test_simple.py .                                                         [ 10%]
+test_simple2.py .........                                                [100%]
+
+----------- generated xml file: /tmp/nix-shell.UGLi2M/tmp.RgBM1Umtia -----------
+============================== 10 passed in 0.32s ==============================
+pytest test duration in ms=482
+
+== summary ==
+full run total executed tests=10
+full run total duration in ms=478
+full run exit status=0
+
+optimized run total executed tests=10
+optimized run total duration in ms=676
+optimized run exit status=0
+optimized to full run relation=1.4142
+
+benchmark terminated with error=false
