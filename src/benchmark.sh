@@ -4,9 +4,9 @@ set -uo pipefail
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 BENCH_ROOT="${BENCH_ROOT:-$SCRIPT_DIR}"
-CONTROL_SCRIPT="${CONTROL_SCRIPT:-$SCRIPT_DIR/control.sh}"
 TEST_DISCOVERY_SCRIPT="${TEST_DISCOVERY_SCRIPT:-$SCRIPT_DIR/testDiscovery.sh}"
 TEST_EXECUTION_SCRIPT="${TEST_EXECUTION_SCRIPT:-$SCRIPT_DIR/testExecution.sh}"
+TEST_AUDITOR="${TEST_AUDITOR:-testAuditor}"
 
 now_ns() {
     date +%s%N
@@ -16,6 +16,13 @@ duration_ms() {
     local start="$1"
     local end="$2"
     echo $(( (end - start) / 1000000 ))
+}
+
+emit_cdata() {
+    local content
+    content="$(cat)"
+    content=${content//]]>/]]]]><![CDATA[>}
+    printf '<![CDATA[\n%s\n]]>' "$content"
 }
 
 count_report_tests() {
@@ -47,6 +54,17 @@ print(count)
 PY
 }
 
+count_test_list() {
+    local file="$1"
+
+    if [[ ! -f "$file" ]]; then
+        echo 0
+        return
+    fi
+
+    awk 'NF { count++ } END { print count + 0 }' "$file"
+}
+
 run_full_pytest() {
     local report="$1"
     local status=0
@@ -58,12 +76,80 @@ run_full_pytest() {
     return "$status"
 }
 
-validate_shared_scripts() {
-    if [[ ! -f "$CONTROL_SCRIPT" ]]; then
-        echo "control script not found: $CONTROL_SCRIPT" >&2
-        return 1
+build_auditor_input() {
+    local discovery_file="$1"
+    local archive_dir="$2"
+    local output_file="$3"
+
+    {
+        printf '%s\n' '<?xml version="1.0" encoding="utf-8"?>'
+        printf '%s\n' '<testAuditorInput version="1.0">'
+
+        printf '%s\n' '  <testDiscovery>'
+        emit_cdata < "$discovery_file"
+        printf '\n%s\n' '  </testDiscovery>'
+
+        printf '%s\n' '  <reports>'
+
+        if [[ -d "$archive_dir" ]]; then
+            while IFS= read -r report; do
+                printf '%s\n' '    <report format="junit-xml">'
+                emit_cdata < "$report"
+                printf '\n%s\n' '    </report>'
+            done < <(find "$archive_dir" -type f -name '*.xml' | sort)
+        fi
+
+        printf '%s\n' '  </reports>'
+        printf '%s\n' '</testAuditorInput>'
+    } > "$output_file"
+}
+
+run_optimized_testauditor() {
+    local output_report="$1"
+    local tmp_dir="$2"
+
+    local discovery_file="$tmp_dir/discovery.xml"
+    local auditor_input="$tmp_dir/testAuditorInput.xml"
+    local selected_tests="$tmp_dir/selected-tests.txt"
+
+    local status=0
+
+    : > "$output_report"
+
+    echo "running testDiscovery" >&2
+    bash "$TEST_DISCOVERY_SCRIPT" > "$discovery_file"
+    status=$?
+    if [[ "$status" -ne 0 ]]; then
+        echo "testDiscovery failed" >&2
+        return "$status"
     fi
 
+    build_auditor_input "$discovery_file" "archive" "$auditor_input"
+
+    echo "running testAuditor" >&2
+    "$TEST_AUDITOR" < "$auditor_input" > "$selected_tests"
+    status=$?
+    if [[ "$status" -ne 0 ]]; then
+        echo "testAuditor failed" >&2
+        return "$status"
+    fi
+
+    echo "selected_tests=$(count_test_list "$selected_tests")" >&2
+    echo "-- selected tests --" >&2
+    if [[ -s "$selected_tests" ]]; then
+        cat "$selected_tests" >&2
+    else
+        echo "(none)" >&2
+    fi
+
+    echo "running testExecution" >&2
+    bash "$TEST_EXECUTION_SCRIPT" < "$selected_tests" > "$output_report"
+    status=$?
+
+    return "$status"
+}
+
+validate_shared_scripts() {
     if [[ ! -f "$TEST_DISCOVERY_SCRIPT" ]]; then
         echo "testDiscovery script not found: $TEST_DISCOVERY_SCRIPT" >&2
         return 1
@@ -74,8 +160,8 @@ validate_shared_scripts() {
         return 1
     fi
 
-    if ! command -v testAuditor >/dev/null 2>&1; then
-        echo "testAuditor not found in PATH" >&2
+    if ! command -v "$TEST_AUDITOR" >/dev/null 2>&1; then
+        echo "$TEST_AUDITOR not found in PATH" >&2
         return 1
     fi
 
@@ -103,15 +189,6 @@ run_benchmark_dir() {
     local bench_name
     bench_name="$(basename "$bench_abs")"
 
-    local control_abs
-    control_abs="$(realpath "$CONTROL_SCRIPT")"
-
-    local discovery_abs
-    discovery_abs="$(realpath "$TEST_DISCOVERY_SCRIPT")"
-
-    local execution_abs
-    execution_abs="$(realpath "$TEST_EXECUTION_SCRIPT")"
-
     validate_benchmark_dir "$bench_abs" || return 1
 
     local result_dir="$bench_abs/result"
@@ -138,82 +215,6 @@ run_benchmark_dir() {
 
     (
         cd "$bench_abs" || exit 1
-
-        source "$control_abs"
-
-        # Override:
-        # Use shared testDiscovery.sh from src instead of ./testDiscovery.sh.
-        ta-from-discovery() {
-            local commit="${1:-HEAD}"
-            local discovery
-
-            if ! discovery="$(bash "$discovery_abs")"; then
-                echo "testDiscovery failed" >&2
-                return 1
-            fi
-
-            printf '%s' "$discovery" | ta-from-wrapper "$commit"
-        }
-
-        # Override:
-        # Use archive/*.xml instead of git notes as historical reports.
-        ta-from-wrapper() {
-            local commit="${1:-HEAD}"
-            local discovery
-            discovery="$(cat)"
-
-            local input_file
-            input_file="$(mktemp)"
-            trap 'rm -f "$input_file"' RETURN
-
-            {
-                printf '%s\n' '<?xml version="1.0" encoding="utf-8"?>'
-                printf '%s\n' '<testAuditorInput version="1.0">'
-
-                printf '%s\n' '  <testDiscovery>'
-                printf '%s' "$discovery" | emit_cdata
-                printf '\n%s\n' '  </testDiscovery>'
-
-                printf '%s\n' '  <reports>'
-
-                if [[ -d archive ]]; then
-                    while IFS= read -r report; do
-                        printf '%s\n' '    <report format="junit-xml">'
-                        emit_cdata < "$report"
-                        printf '\n%s\n' '    </report>'
-                    done < <(find archive -type f -name '*.xml' | sort)
-                fi
-
-                printf '%s\n' '  </reports>'
-                printf '%s\n' '</testAuditorInput>'
-            } > "$input_file"
-
-            cat "$input_file" | ta-from-auditor "$commit"
-        }
-
-        # Override:
-        # Use shared testExecution.sh from src instead of ./testExecution.sh.
-        ta-from-execution() {
-            local commit="${1:-HEAD}"
-            local execution_output
-            local execution_status=0
-
-            execution_output="$(bash "$execution_abs")" || execution_status=$?
-
-            if [[ -z "$execution_output" ]]; then
-                echo "testExecution produced no report" >&2
-                return "$execution_status"
-            fi
-
-            printf '%s' "$execution_output" | ta-write-note "$commit"
-            return "$execution_status"
-        }
-
-        # Override:
-        # Do not write git notes during benchmarks.
-        ta-write-note() {
-            cat
-        }
 
         local start
         local end
@@ -250,7 +251,7 @@ run_benchmark_dir() {
         echo "description=shared testDiscovery + archive reports + testAuditor + shared selected testExecution" >> "$log_file"
 
         start="$(now_ns)"
-        test-all > "$optimized_report" 2> "$optimized_stderr"
+        run_optimized_testauditor "$optimized_report" "$tmp_dir" 2> "$optimized_stderr"
         optimized_status=$?
         end="$(now_ns)"
 

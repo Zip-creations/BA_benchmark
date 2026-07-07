@@ -1,6 +1,6 @@
 benchmark=bench_basic2
 benchmark_abs=/home/ruben/dev/bachelor/project/benchmark/src/bench_basic2
-timestamp=2026-07-07T16:43:23+02:00
+timestamp=2026-07-07T16:47:18+02:00
 
 == full run ==
 description=direct pytest run without testDiscovery and without testAuditor
@@ -35,31 +35,34 @@ Traceback:
 test_simple.py:1: in <module>
     from bench_basic2.classes.ToDoList import ToDoList, ToDoItem
 E   ModuleNotFoundError: No module named 'bench_basic2'
---- generated xml file: /tmp/nix-shell.UGLi2M/tmp.Squ75ii7mE/full-report.xml ---
+--- generated xml file: /tmp/nix-shell.UGLi2M/tmp.lcHMzA4ThN/full-report.xml ---
 =========================== short test summary info ============================
 ERROR test_identity.py
 ERROR test_simple.py
 !!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!
-============================== 2 errors in 0.07s ===============================
+============================== 2 errors in 0.08s ===============================
 
 == optimized run ==
 description=shared testDiscovery + archive reports + testAuditor + shared selected testExecution
 optimized_status=0
-optimized_total_duration_ms=257
+optimized_total_duration_ms=237
 optimized_tests=0
 -- optimized stderr --
+running testDiscovery
+running testAuditor
 Test discovery resulted in 0 tests found. Aborting.
-testAuditor picked the following tests for execution:
-
+selected_tests=0
+-- selected tests --
+(none)
+running testExecution
 testExecution received 0 tests
-testExecution produced no report
 
 == summary ==
 full_tests=2
 full_duration_ms=224
 full_status=2
 optimized_tests=0
-optimized_total_duration_ms=257
+optimized_total_duration_ms=237
 optimized_status=0
-relative_runtime=1.15
+relative_runtime=1.06
 benchmark_completed_with_test_failures=true

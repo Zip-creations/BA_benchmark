@@ -1,11 +1,11 @@
 benchmark=bench_basic
 benchmark_abs=/home/ruben/dev/bachelor/project/benchmark/src/bench_basic
-timestamp=2026-07-07T16:43:22+02:00
+timestamp=2026-07-07T16:47:17+02:00
 
 == full run ==
 description=direct pytest run without testDiscovery and without testAuditor
 full_status=0
-full_duration_ms=176
+full_duration_ms=313
 full_tests=2
 -- full stderr --
 ============================= test session starts ==============================
@@ -16,17 +16,21 @@ collected 2 items
 
 test_simple.py ..                                                        [100%]
 
---- generated xml file: /tmp/nix-shell.UGLi2M/tmp.4NA5r1Tzj3/full-report.xml ---
+--- generated xml file: /tmp/nix-shell.UGLi2M/tmp.srZsaOZ9Ci/full-report.xml ---
 ============================== 2 passed in 0.01s ===============================
 
 == optimized run ==
 description=shared testDiscovery + archive reports + testAuditor + shared selected testExecution
 optimized_status=0
-optimized_total_duration_ms=345
+optimized_total_duration_ms=366
 optimized_tests=1
 -- optimized stderr --
-testAuditor picked the following tests for execution:
+running testDiscovery
+running testAuditor
+selected_tests=1
+-- selected tests --
 test_simple.py::test_simple_two
+running testExecution
 testExecution received 1 tests
 ============================= test session starts ==============================
 platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0
@@ -36,15 +40,15 @@ collected 1 item
 
 test_simple.py .                                                         [100%]
 
------------ generated xml file: /tmp/nix-shell.UGLi2M/tmp.fxSaU8OfdP -----------
+----------- generated xml file: /tmp/nix-shell.UGLi2M/tmp.TQ9JyprscS -----------
 ============================== 1 passed in 0.01s ===============================
 
 == summary ==
 full_tests=2
-full_duration_ms=176
+full_duration_ms=313
 full_status=0
 optimized_tests=1
-optimized_total_duration_ms=345
+optimized_total_duration_ms=366
 optimized_status=0
-relative_runtime=1.96
+relative_runtime=1.17
 benchmark_completed_with_test_failures=false
