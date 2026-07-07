@@ -1,5 +1,3 @@
-import pytest
-
 def test_simple():
     assert "foo" != "bar"
 

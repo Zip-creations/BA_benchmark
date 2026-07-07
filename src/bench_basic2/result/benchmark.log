@@ -1,13 +1,14 @@
 benchmark=bench_basic2
 benchmark_abs=/home/ruben/dev/bachelor/project/benchmark/src/bench_basic2
-timestamp=2026-07-07T16:47:18+02:00
+timestamp=2026-07-07T17:43:57+02:00
 
 == full run ==
-description=direct pytest run without testDiscovery and without testAuditor
+description=This run is represents the traditional way by always executing every testcase
 full_status=2
-full_duration_ms=224
+full_duration_ms=215
 full_tests=2
--- full stderr --
+
+report from pytest:
 ============================= test session starts ==============================
 platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0
 rootdir: /home/ruben/dev/bachelor/project/benchmark/src/bench_basic2
@@ -35,34 +36,38 @@ Traceback:
 test_simple.py:1: in <module>
     from bench_basic2.classes.ToDoList import ToDoList, ToDoItem
 E   ModuleNotFoundError: No module named 'bench_basic2'
---- generated xml file: /tmp/nix-shell.UGLi2M/tmp.lcHMzA4ThN/full-report.xml ---
+--- generated xml file: /tmp/nix-shell.UGLi2M/tmp.qFuxhgIqnS/full-report.xml ---
 =========================== short test summary info ============================
 ERROR test_identity.py
 ERROR test_simple.py
 !!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!
-============================== 2 errors in 0.08s ===============================
+============================== 2 errors in 0.07s ===============================
+pytest test duration in ms=215
 
 == optimized run ==
-description=shared testDiscovery + archive reports + testAuditor + shared selected testExecution
+description=This run makes use of the process that was developed in the bachelor thesis
 optimized_status=0
-optimized_total_duration_ms=237
+optimized_total_duration_ms=280
 optimized_tests=0
 -- optimized stderr --
-running testDiscovery
-running testAuditor
+reported testcases by testDiscovery= 0
 Test discovery resulted in 0 tests found. Aborting.
-selected_tests=0
+selected testcases by testAuditor=0
 -- selected tests --
 (none)
-running testExecution
+
+report from testExecution:
 testExecution received 0 tests
+pytest test duration in ms=7
 
 == summary ==
-full_tests=2
-full_duration_ms=224
-full_status=2
-optimized_tests=0
-optimized_total_duration_ms=237
-optimized_status=0
-relative_runtime=1.06
-benchmark_completed_with_test_failures=true
+full run total executed tests=2
+full run total duration in ms=215
+full run exit status=2
+
+optimized run total executed tests=0
+optimized run total duration in ms=280
+optimized run exit status=0
+optimized to full run relation=1.30
+
+benchmark terminated with error=true
