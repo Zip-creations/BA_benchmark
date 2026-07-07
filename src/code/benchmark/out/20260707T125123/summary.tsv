@@ -1,0 +1,5 @@
+variant	tests	duration_ms	status
+full	6	361	0
+optimized	0	189	1
+
+speedup	1.91

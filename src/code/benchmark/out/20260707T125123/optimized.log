@@ -1,0 +1,5 @@
+mktemp: failed to create file via template ‘/tmp/nix-shell.6zS6Li/tmp.XXXXXXXXXX’: No such file or directory
+./control.sh: line 32: : No such file or directory
+cat: '': No such file or directory
+Failed to parse input: EOF
+testAuditor failed
