@@ -1,0 +1,63 @@
+benchmark=bench_basic2
+benchmark_abs=/home/ruben/dev/bachelor/project/benchmark/src/bench_basic2
+timestamp=2026-07-07T16:14:38+02:00
+
+== full run ==
+description=direct pytest run without testDiscovery and without testAuditor
+============================= test session starts ==============================
+platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0
+rootdir: /home/ruben/dev/bachelor/project/benchmark/src/bench_basic2
+plugins: tap-3.5, json-report-1.5.0, metadata-3.1.1
+collected 0 items / 2 errors
+
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_identity.py _______________________
+ImportError while importing test module '/home/ruben/dev/bachelor/project/benchmark/src/bench_basic2/test_identity.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/nix/store/khwr6x5czadssznz3d3dcvd0xbz3x907-python3-3.13.13-env/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test_identity.py:1: in <module>
+    from bench_basic2.classes.ToDoList import ToDoList, ToDoItem
+E   ModuleNotFoundError: No module named 'bench_basic2'
+_______________________ ERROR collecting test_simple.py ________________________
+ImportError while importing test module '/home/ruben/dev/bachelor/project/benchmark/src/bench_basic2/test_simple.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/nix/store/khwr6x5czadssznz3d3dcvd0xbz3x907-python3-3.13.13-env/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test_simple.py:1: in <module>
+    from bench_basic2.classes.ToDoList import ToDoList, ToDoItem
+E   ModuleNotFoundError: No module named 'bench_basic2'
+--- generated xml file: /tmp/nix-shell.UGLi2M/tmp.r4enB29SCs/full-report.xml ---
+=========================== short test summary info ============================
+ERROR test_identity.py
+ERROR test_simple.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!
+============================== 2 errors in 0.08s ===============================
+full_status=2
+full_duration_ms=231
+full_tests=2
+
+== optimized run ==
+description=testDiscovery + archive reports + testAuditor + selected testExecution
+Test discovery resulted in 0 tests found. Aborting.
+testAuditor picked the following tests for execution:
+
+testExecution received 0 tests
+testExecution produced no report; no note written
+optimized_status=0
+optimized_total_duration_ms=244
+optimized_tests=0
+
+== summary ==
+full_tests=2
+full_duration_ms=231
+full_status=2
+optimized_tests=0
+optimized_total_duration_ms=244
+optimized_status=0
+relative_runtime=1.06
+benchmark_completed_with_test_failures=true
