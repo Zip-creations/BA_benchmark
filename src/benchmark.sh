@@ -292,7 +292,7 @@ run_benchmark_dir() {
             awk -v full="$full_duration_ms" -v opt="$optimized_duration_ms" \
                 'BEGIN {
                     if (full > 0) {
-                        printf "%.2f", opt / full
+                        printf "%.4f", opt / full
                     } else {
                         print "n/a"
                     }
