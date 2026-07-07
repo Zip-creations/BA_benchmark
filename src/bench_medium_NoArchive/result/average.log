@@ -1,19 +1,19 @@
 benchmark=bench_medium_NoArchive
 runs requested=10
 runs recorded=10
-timestamp=2026-07-08T00:57:08+02:00
+timestamp=2026-07-08T01:38:07+02:00
 
 == averages ==
 full run total executed tests average=10.000000
-full run total duration in ms average=454.100000
-full run test duration in ms average=454.100000
+full run total duration in ms average=460.800000
+full run test duration in ms average=460.800000
 full run overhead in ms average=0.000000
 
 optimized run total executed tests average=10.000000
-optimized run total duration in ms average=644.200000
-optimized run test duration in ms average=453.800000
-optimized run overhead in ms average=190.400000
-optimized to full run relation average=1.431510
+optimized run total duration in ms average=649.500000
+optimized run test duration in ms average=462.600000
+optimized run overhead in ms average=186.900000
+optimized to full run relation average=1.418020
 
 == status ==
 full run failed runs=0

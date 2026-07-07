@@ -1,11 +1,11 @@
 benchmark name=bench_slow_SomeArchive
 benchmark absolute path=/home/ruben/dev/bachelor/project/benchmark/src/bench_slow_SomeArchive
-timestamp=2026-07-08T00:56:43+02:00
+timestamp=2026-07-08T01:37:41+02:00
 
 == full run ==
 description=This run is represents the traditional way by always executing every testcase
 full_status=0
-full_duration_ms=3333
+full_duration_ms=3256
 full_tests=10
 
 report from pytest:
@@ -18,9 +18,9 @@ collected 10 items
 test_simple.py .                                                         [ 10%]
 test_simple2.py .........                                                [100%]
 
---- generated xml file: /tmp/nix-shell.UGLi2M/tmp.T3TZJwbNi4/full-report.xml ---
-============================== 10 passed in 3.18s ==============================
-pytest test duration in ms=3333
+--- generated xml file: /tmp/nix-shell.7Y3wdT/tmp.bSiSoxEi85/full-report.xml ---
+============================== 10 passed in 3.11s ==============================
+pytest test duration in ms=3256
 
 == optimized run ==
 description=This run makes use of the process that was developed in the bachelor thesis
@@ -48,18 +48,18 @@ collected 5 items
 test_simple.py .                                                         [ 20%]
 test_simple2.py ....                                                     [100%]
 
------------ generated xml file: /tmp/nix-shell.UGLi2M/tmp.Vm359mFHPL -----------
-============================== 5 passed in 1.39s ===============================
-pytest test duration in ms=1558
+----------- generated xml file: /tmp/nix-shell.7Y3wdT/tmp.gdX01CMUjU -----------
+============================== 5 passed in 1.40s ===============================
+pytest test duration in ms=1553
 
 == summary ==
 full run total executed tests=10
-full run total duration in ms=3333
+full run total duration in ms=3256
 full run exit status=0
 
 optimized run total executed tests=5
 optimized run total duration in ms=1745
 optimized run exit status=0
-optimized to full run relation=0.5236
+optimized to full run relation=0.5359
 
 benchmark terminated with error=false

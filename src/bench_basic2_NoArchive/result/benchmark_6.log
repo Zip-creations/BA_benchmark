@@ -1,11 +1,11 @@
 benchmark name=bench_basic2_NoArchive
 benchmark absolute path=/home/ruben/dev/bachelor/project/benchmark/src/bench_basic2_NoArchive
-timestamp=2026-07-08T00:55:29+02:00
+timestamp=2026-07-08T01:36:30+02:00
 
 == full run ==
 description=This run is represents the traditional way by always executing every testcase
 full_status=0
-full_duration_ms=158
+full_duration_ms=164
 full_tests=10
 
 report from pytest:
@@ -18,14 +18,14 @@ collected 10 items
 test_simple.py .                                                         [ 10%]
 test_simple2.py .........                                                [100%]
 
---- generated xml file: /tmp/nix-shell.UGLi2M/tmp.YEH3cpBTX5/full-report.xml ---
+--- generated xml file: /tmp/nix-shell.7Y3wdT/tmp.MP7M72KZxa/full-report.xml ---
 ============================== 10 passed in 0.01s ==============================
-pytest test duration in ms=158
+pytest test duration in ms=164
 
 == optimized run ==
 description=This run makes use of the process that was developed in the bachelor thesis
 optimized_status=0
-optimized_total_duration_ms=353
+optimized_total_duration_ms=364
 optimized_tests=10
 -- optimized stderr --
 reported testcases by testDiscovery= 10
@@ -53,18 +53,18 @@ collected 10 items
 test_simple.py .                                                         [ 10%]
 test_simple2.py .........                                                [100%]
 
------------ generated xml file: /tmp/nix-shell.UGLi2M/tmp.03Qg8w0T5w -----------
+----------- generated xml file: /tmp/nix-shell.7Y3wdT/tmp.gYhd3KuXOK -----------
 ============================== 10 passed in 0.01s ==============================
-pytest test duration in ms=170
+pytest test duration in ms=174
 
 == summary ==
 full run total executed tests=10
-full run total duration in ms=158
+full run total duration in ms=164
 full run exit status=0
 
 optimized run total executed tests=10
-optimized run total duration in ms=353
+optimized run total duration in ms=364
 optimized run exit status=0
-optimized to full run relation=2.2342
+optimized to full run relation=2.2195
 
 benchmark terminated with error=false
