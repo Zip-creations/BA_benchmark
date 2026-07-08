@@ -1,0 +1,49 @@
+benchmark name=bench_medium_few_FullArchive
+benchmark absolute path=/home/ruben/dev/bachelor/project/benchmark/src/bench_medium_few_FullArchive
+timestamp=2026-07-08T12:43:09+02:00
+
+== full run ==
+description=This run is represents the traditional way by always executing every testcase
+full_status=0
+full_duration_ms=492
+full_tests=10
+
+report from pytest:
+============================= test session starts ==============================
+platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0
+rootdir: /home/ruben/dev/bachelor/project/benchmark/src/bench_medium_few_FullArchive
+plugins: tap-3.5, json-report-1.5.0, metadata-3.1.1
+collected 10 items
+
+test_simple.py ..........                                                [100%]
+
+--- generated xml file: /tmp/nix-shell.RIvZ6b/tmp.NdJTJXVzm4/full-report.xml ---
+============================== 10 passed in 0.35s ==============================
+pytest test duration in ms=492
+
+== optimized run ==
+description=This run makes use of the process that was developed in the bachelor thesis
+optimized_status=0
+optimized_total_duration_ms=195
+optimized_tests=0
+-- optimized stderr --
+reported testcases by testDiscovery= 10
+selected testcases by testAuditor=0
+-- selected tests --
+(none)
+
+report from testExecution:
+testExecution received 0 tests
+pytest test duration in ms=8
+
+== summary ==
+full run total executed tests=10
+full run total duration in ms=492
+full run exit status=0
+
+optimized run total executed tests=0
+optimized run total duration in ms=195
+optimized run exit status=0
+optimized to full run relation=0.3963
+
+benchmark terminated with error=false
