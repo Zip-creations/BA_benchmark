@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <testsuites name="pytest tests">
-    <testsuite name="pytest" errors="0" failures="0" skipped="0" tests="10" time="0.355"
-        timestamp="2026-07-08T00:03:57.044715+02:00" hostname="DESKTOP-I9APAL0">
-        <testcase classname="test_simple2" name="test_simple_6" time="0.038" />
-        <testcase classname="test_simple2" name="test_simple_7" time="0.037" />
-        <testcase classname="test_simple2" name="test_simple_8" time="0.038" />
-        <testcase classname="test_simple2" name="test_simple_9" time="0.037" />
-        <testcase classname="test_simple2" name="test_simple_10" time="0.038" />
+    <testsuite name="pytest" errors="0" failures="0" skipped="0" tests="10" time="3.398"
+        timestamp="2026-07-08T11:52:38.199452+02:00" hostname="DESKTOP-I9APAL0">
+        <testcase classname="test_simple" name="test_simple[0]" time="0.368" />
+        <testcase classname="test_simple" name="test_simple[1]" time="0.334" />
+        <testcase classname="test_simple" name="test_simple[2]" time="0.334" />
+        <testcase classname="test_simple" name="test_simple[3]" time="0.334" />
+        <testcase classname="test_simple" name="test_simple[4]" time="0.337" />
     </testsuite>
 </testsuites>

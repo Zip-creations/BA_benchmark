@@ -4,7 +4,7 @@ Dies ist ein experimenteller Aufbau, der die Laufzeiten von dem Verfahren, welch
 Dazu werden verschiedene benches durchlaufen, welche alle dem selben Aufbau folgen:<br>
 bench_* enthält folgende Komponenten:
 - `archive`: 
-Ein Ordner, der je nach bench entweder leer ist, oder die Datei out.xml beinhaltet. out.xml simuliert eine Menge von bereits ausgeführten Testcases.
+Ein Ordner, der je nach bench entweder leer ist, oder die Datei `out.xml` beinhaltet. `out.xml` simuliert eine Menge von bereits ausgeführten Testcases.
 - `test_simple*.py`:
 Eine nicht leere Menge von Testdateien, welche die zu Menge von Testcases im Projekt darstellt
 - `result`:
@@ -13,4 +13,4 @@ Ein Ordner, der die resultierende .log Datei(n) aus einem Durchlauf der bench en
 Die Benchmark kann auf zweierlei Weise ausgeführt werden:
 
 - `benchmark.sh` lässt jede bench genau einmal laufen
-- `benchmark_repeat.sh` lässt jede bench 10 mal laufen, und legt jedes Ergebnis mitsamt der zusätzlichen Datei average.log in `result` ab
+- `benchmark_repeat.sh` lässt jede bench 10 mal laufen, und legt jedes Ergebnis mitsamt der zusätzlichen Datei `average.log` in `result` ab
