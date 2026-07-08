@@ -1,11 +1,11 @@
 benchmark name=bench_medium_many_FullArchive
 benchmark absolute path=/home/ruben/dev/bachelor/project/benchmark/src/bench_medium_many_FullArchive
-timestamp=2026-07-08T12:46:01+02:00
+timestamp=2026-07-08T16:18:35+02:00
 
 == full run ==
 description=This run is represents the traditional way by always executing every testcase
 full_status=0
-full_duration_ms=815
+full_duration_ms=951
 full_tests=1000
 
 report from pytest:
@@ -31,14 +31,14 @@ test_simple.py ......................................................... [  5%]
 ........................................................................ [ 99%]
 .......                                                                  [100%]
 
---- generated xml file: /tmp/nix-shell.RIvZ6b/tmp.qE8maWY5pI/full-report.xml ---
-============================= 1000 passed in 0.65s =============================
-pytest test duration in ms=815
+--- generated xml file: /tmp/nix-shell.guJPQd/tmp.M3MqO33pnx/full-report.xml ---
+============================= 1000 passed in 0.78s =============================
+pytest test duration in ms=951
 
 == optimized run ==
 description=This run makes use of the process that was developed in the bachelor thesis
 optimized_status=0
-optimized_total_duration_ms=262
+optimized_total_duration_ms=279
 optimized_tests=0
 -- optimized stderr --
 reported testcases by testDiscovery= 1000
@@ -52,12 +52,12 @@ pytest test duration in ms=7
 
 == summary ==
 full run total executed tests=1000
-full run total duration in ms=815
+full run total duration in ms=951
 full run exit status=0
 
 optimized run total executed tests=0
-optimized run total duration in ms=262
+optimized run total duration in ms=279
 optimized run exit status=0
-optimized to full run relation=0.3215
+optimized to full run relation=0.2934
 
 benchmark terminated with error=false

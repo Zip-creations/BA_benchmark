@@ -1,11 +1,11 @@
 benchmark name=bench_fast_few_SomeArchive
 benchmark absolute path=/home/ruben/dev/bachelor/project/benchmark/src/bench_fast_few_SomeArchive
-timestamp=2026-07-08T12:40:13+02:00
+timestamp=2026-07-08T16:12:50+02:00
 
 == full run ==
 description=This run is represents the traditional way by always executing every testcase
 full_status=0
-full_duration_ms=159
+full_duration_ms=185
 full_tests=10
 
 report from pytest:
@@ -17,14 +17,14 @@ collected 10 items
 
 test_simple.py ..........                                                [100%]
 
---- generated xml file: /tmp/nix-shell.RIvZ6b/tmp.PhMMAsClr5/full-report.xml ---
-============================== 10 passed in 0.01s ==============================
-pytest test duration in ms=159
+--- generated xml file: /tmp/nix-shell.guJPQd/tmp.6d1PBtAmSt/full-report.xml ---
+============================== 10 passed in 0.02s ==============================
+pytest test duration in ms=185
 
 == optimized run ==
 description=This run makes use of the process that was developed in the bachelor thesis
 optimized_status=0
-optimized_total_duration_ms=358
+optimized_total_duration_ms=365
 optimized_tests=5
 -- optimized stderr --
 reported testcases by testDiscovery= 10
@@ -46,18 +46,18 @@ collected 5 items
 
 test_simple.py .....                                                     [100%]
 
------------ generated xml file: /tmp/nix-shell.RIvZ6b/tmp.LweCKuUHmg -----------
+----------- generated xml file: /tmp/nix-shell.guJPQd/tmp.5aax2Q0X4z -----------
 ============================== 5 passed in 0.01s ===============================
-pytest test duration in ms=164
+pytest test duration in ms=173
 
 == summary ==
 full run total executed tests=10
-full run total duration in ms=159
+full run total duration in ms=185
 full run exit status=0
 
 optimized run total executed tests=5
-optimized run total duration in ms=358
+optimized run total duration in ms=365
 optimized run exit status=0
-optimized to full run relation=2.2516
+optimized to full run relation=1.9730
 
 benchmark terminated with error=false

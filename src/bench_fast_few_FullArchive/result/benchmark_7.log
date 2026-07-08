@@ -1,6 +1,6 @@
 benchmark name=bench_fast_few_FullArchive
 benchmark absolute path=/home/ruben/dev/bachelor/project/benchmark/src/bench_fast_few_FullArchive
-timestamp=2026-07-08T12:43:05+02:00
+timestamp=2026-07-08T16:15:40+02:00
 
 == full run ==
 description=This run is represents the traditional way by always executing every testcase
@@ -17,14 +17,14 @@ collected 10 items
 
 test_simple.py ..........                                                [100%]
 
---- generated xml file: /tmp/nix-shell.RIvZ6b/tmp.4OH3mdGsAf/full-report.xml ---
+--- generated xml file: /tmp/nix-shell.guJPQd/tmp.uybkkMYoUB/full-report.xml ---
 ============================== 10 passed in 0.01s ==============================
 pytest test duration in ms=163
 
 == optimized run ==
 description=This run makes use of the process that was developed in the bachelor thesis
 optimized_status=0
-optimized_total_duration_ms=188
+optimized_total_duration_ms=191
 optimized_tests=0
 -- optimized stderr --
 reported testcases by testDiscovery= 10
@@ -42,8 +42,8 @@ full run total duration in ms=163
 full run exit status=0
 
 optimized run total executed tests=0
-optimized run total duration in ms=188
+optimized run total duration in ms=191
 optimized run exit status=0
-optimized to full run relation=1.1534
+optimized to full run relation=1.1718
 
 benchmark terminated with error=false

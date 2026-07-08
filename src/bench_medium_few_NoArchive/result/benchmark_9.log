@@ -1,11 +1,11 @@
 benchmark name=bench_medium_few_NoArchive
 benchmark absolute path=/home/ruben/dev/bachelor/project/benchmark/src/bench_medium_few_NoArchive
-timestamp=2026-07-08T12:45:59+02:00
+timestamp=2026-07-08T16:18:33+02:00
 
 == full run ==
 description=This run is represents the traditional way by always executing every testcase
 full_status=0
-full_duration_ms=506
+full_duration_ms=495
 full_tests=10
 
 report from pytest:
@@ -17,14 +17,14 @@ collected 10 items
 
 test_simple.py ..........                                                [100%]
 
---- generated xml file: /tmp/nix-shell.RIvZ6b/tmp.wJNHRjtkWl/full-report.xml ---
+--- generated xml file: /tmp/nix-shell.guJPQd/tmp.qLNHuXFL9y/full-report.xml ---
 ============================== 10 passed in 0.35s ==============================
-pytest test duration in ms=506
+pytest test duration in ms=495
 
 == optimized run ==
 description=This run makes use of the process that was developed in the bachelor thesis
 optimized_status=0
-optimized_total_duration_ms=697
+optimized_total_duration_ms=715
 optimized_tests=10
 -- optimized stderr --
 reported testcases by testDiscovery= 10
@@ -51,18 +51,18 @@ collected 10 items
 
 test_simple.py ..........                                                [100%]
 
------------ generated xml file: /tmp/nix-shell.RIvZ6b/tmp.3ocdFeYwQE -----------
-============================== 10 passed in 0.34s ==============================
-pytest test duration in ms=509
+----------- generated xml file: /tmp/nix-shell.guJPQd/tmp.kKeNaxlycQ -----------
+============================== 10 passed in 0.36s ==============================
+pytest test duration in ms=527
 
 == summary ==
 full run total executed tests=10
-full run total duration in ms=506
+full run total duration in ms=495
 full run exit status=0
 
 optimized run total executed tests=10
-optimized run total duration in ms=697
+optimized run total duration in ms=715
 optimized run exit status=0
-optimized to full run relation=1.3775
+optimized to full run relation=1.4444
 
 benchmark terminated with error=false

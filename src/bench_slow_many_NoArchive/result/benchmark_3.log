@@ -1,11 +1,11 @@
 benchmark name=bench_slow_many_NoArchive
 benchmark absolute path=/home/ruben/dev/bachelor/project/benchmark/src/bench_slow_many_NoArchive
-timestamp=2026-07-08T12:38:00+02:00
+timestamp=2026-07-08T16:10:35+02:00
 
 == full run ==
 description=This run is represents the traditional way by always executing every testcase
 full_status=0
-full_duration_ms=8433
+full_duration_ms=7505
 full_tests=10000
 
 report from pytest:
@@ -156,14 +156,14 @@ test_simple.py ......................................................... [  0%]
 ........................................................................ [ 99%]
 .......                                                                  [100%]
 
---- generated xml file: /tmp/nix-shell.RIvZ6b/tmp.U2NnaikqeQ/full-report.xml ---
-============================ 10000 passed in 7.91s =============================
-pytest test duration in ms=8433
+--- generated xml file: /tmp/nix-shell.guJPQd/tmp.emJWxjBtYu/full-report.xml ---
+============================ 10000 passed in 6.99s =============================
+pytest test duration in ms=7505
 
 == optimized run ==
 description=This run makes use of the process that was developed in the bachelor thesis
 optimized_status=0
-optimized_total_duration_ms=21208
+optimized_total_duration_ms=21337
 optimized_tests=10000
 -- optimized stderr --
 reported testcases by testDiscovery= 10000
@@ -10319,18 +10319,18 @@ test_simple.py ......................................................... [  0%]
 ........................................................................ [ 99%]
 .......                                                                  [100%]
 
------------ generated xml file: /tmp/nix-shell.RIvZ6b/tmp.YRAWmxhmzV -----------
-============================ 10000 passed in 16.09s ============================
-pytest test duration in ms=20427
+----------- generated xml file: /tmp/nix-shell.guJPQd/tmp.V5AmPKutzb -----------
+============================ 10000 passed in 16.14s ============================
+pytest test duration in ms=20531
 
 == summary ==
 full run total executed tests=10000
-full run total duration in ms=8433
+full run total duration in ms=7505
 full run exit status=0
 
 optimized run total executed tests=10000
-optimized run total duration in ms=21208
+optimized run total duration in ms=21337
 optimized run exit status=0
-optimized to full run relation=2.5149
+optimized to full run relation=2.8430
 
 benchmark terminated with error=false

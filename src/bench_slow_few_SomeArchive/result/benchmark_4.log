@@ -1,11 +1,11 @@
 benchmark name=bench_slow_few_SomeArchive
 benchmark absolute path=/home/ruben/dev/bachelor/project/benchmark/src/bench_slow_few_SomeArchive
-timestamp=2026-07-08T12:39:10+02:00
+timestamp=2026-07-08T16:11:47+02:00
 
 == full run ==
 description=This run is represents the traditional way by always executing every testcase
 full_status=0
-full_duration_ms=3496
+full_duration_ms=3511
 full_tests=10
 
 report from pytest:
@@ -17,14 +17,14 @@ collected 10 items
 
 test_simple.py ..........                                                [100%]
 
---- generated xml file: /tmp/nix-shell.RIvZ6b/tmp.w5NJTEUV2i/full-report.xml ---
+--- generated xml file: /tmp/nix-shell.guJPQd/tmp.gFEWA6JptH/full-report.xml ---
 ============================== 10 passed in 3.35s ==============================
-pytest test duration in ms=3496
+pytest test duration in ms=3511
 
 == optimized run ==
 description=This run makes use of the process that was developed in the bachelor thesis
 optimized_status=0
-optimized_total_duration_ms=2040
+optimized_total_duration_ms=2047
 optimized_tests=5
 -- optimized stderr --
 reported testcases by testDiscovery= 10
@@ -46,18 +46,18 @@ collected 5 items
 
 test_simple.py .....                                                     [100%]
 
------------ generated xml file: /tmp/nix-shell.RIvZ6b/tmp.ubVbBLU6Im -----------
-============================== 5 passed in 1.69s ===============================
-pytest test duration in ms=1846
+----------- generated xml file: /tmp/nix-shell.guJPQd/tmp.XLkTWbmLZQ -----------
+============================== 5 passed in 1.70s ===============================
+pytest test duration in ms=1862
 
 == summary ==
 full run total executed tests=10
-full run total duration in ms=3496
+full run total duration in ms=3511
 full run exit status=0
 
 optimized run total executed tests=5
-optimized run total duration in ms=2040
+optimized run total duration in ms=2047
 optimized run exit status=0
-optimized to full run relation=0.5835
+optimized to full run relation=0.5830
 
 benchmark terminated with error=false

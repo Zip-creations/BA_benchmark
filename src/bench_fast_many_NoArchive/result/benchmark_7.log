@@ -1,11 +1,11 @@
 benchmark name=bench_fast_many_NoArchive
 benchmark absolute path=/home/ruben/dev/bachelor/project/benchmark/src/bench_fast_many_NoArchive
-timestamp=2026-07-08T12:43:07+02:00
+timestamp=2026-07-08T16:15:42+02:00
 
 == full run ==
 description=This run is represents the traditional way by always executing every testcase
 full_status=0
-full_duration_ms=198
+full_duration_ms=204
 full_tests=100
 
 report from pytest:
@@ -18,14 +18,14 @@ collected 100 items
 test_simple.py ......................................................... [ 57%]
 ...........................................                              [100%]
 
---- generated xml file: /tmp/nix-shell.RIvZ6b/tmp.d851NsAR2F/full-report.xml ---
+--- generated xml file: /tmp/nix-shell.guJPQd/tmp.RWYha3WKOS/full-report.xml ---
 ============================= 100 passed in 0.05s ==============================
-pytest test duration in ms=198
+pytest test duration in ms=204
 
 == optimized run ==
 description=This run makes use of the process that was developed in the bachelor thesis
 optimized_status=0
-optimized_total_duration_ms=435
+optimized_total_duration_ms=455
 optimized_tests=100
 -- optimized stderr --
 reported testcases by testDiscovery= 100
@@ -143,18 +143,18 @@ collected 100 items
 test_simple.py ......................................................... [ 57%]
 ...........................................                              [100%]
 
------------ generated xml file: /tmp/nix-shell.RIvZ6b/tmp.0DAO2TV64G -----------
-============================= 100 passed in 0.05s ==============================
-pytest test duration in ms=245
+----------- generated xml file: /tmp/nix-shell.guJPQd/tmp.i75R8rd3vE -----------
+============================= 100 passed in 0.06s ==============================
+pytest test duration in ms=259
 
 == summary ==
 full run total executed tests=100
-full run total duration in ms=198
+full run total duration in ms=204
 full run exit status=0
 
 optimized run total executed tests=100
-optimized run total duration in ms=435
+optimized run total duration in ms=455
 optimized run exit status=0
-optimized to full run relation=2.1970
+optimized to full run relation=2.2304
 
 benchmark terminated with error=false

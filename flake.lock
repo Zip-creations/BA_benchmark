@@ -63,11 +63,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783467028,
-        "narHash": "sha256-ozc5cmewBArzqghGIbMuZzSkK+UHpirZF4fYi7M5nqA=",
+        "lastModified": 1783519325,
+        "narHash": "sha256-ChF6suOJBh4rMgqxTh309NadyXpEX5nv/WuksTipzM8=",
         "owner": "Zip-creations",
         "repo": "testAuditor",
-        "rev": "bf81d194aa1fa8aa8d56c6a64352273048c5cfe2",
+        "rev": "3e13f883b9f6d45bde9b0a8f2e868e6a5497321b",
         "type": "github"
       },
       "original": {
