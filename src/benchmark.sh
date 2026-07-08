@@ -116,7 +116,7 @@ run_optimized_testauditor() {
 
     : > "$output_report"
 
-    bash "$TEST_DISCOVERY_SCRIPT" > "$discovery_file"
+    "$TEST_DISCOVERY_SCRIPT" > "$discovery_file"
     status=$?
     if [[ "$status" -ne 0 ]]; then
         echo "testDiscovery failed" >&2
@@ -151,7 +151,7 @@ run_optimized_testauditor() {
     local execution_duration_ms
 
     execution_start="$(now_ns)"
-    bash "$TEST_EXECUTION_SCRIPT" < "$selected_tests" > "$output_report"
+    "$TEST_EXECUTION_SCRIPT" < "$selected_tests" > "$output_report"
     status=$?
     execution_end="$(now_ns)"
 

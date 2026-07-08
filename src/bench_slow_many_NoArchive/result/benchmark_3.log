@@ -1,11 +1,11 @@
 benchmark name=bench_slow_many_NoArchive
 benchmark absolute path=/home/ruben/dev/bachelor/project/benchmark/src/bench_slow_many_NoArchive
-timestamp=2026-07-08T16:10:35+02:00
+timestamp=2026-07-08T17:13:42+02:00
 
 == full run ==
 description=This run is represents the traditional way by always executing every testcase
 full_status=0
-full_duration_ms=7505
+full_duration_ms=7385
 full_tests=10000
 
 report from pytest:
@@ -156,14 +156,14 @@ test_simple.py ......................................................... [  0%]
 ........................................................................ [ 99%]
 .......                                                                  [100%]
 
---- generated xml file: /tmp/nix-shell.guJPQd/tmp.emJWxjBtYu/full-report.xml ---
-============================ 10000 passed in 6.99s =============================
-pytest test duration in ms=7505
+--- generated xml file: /tmp/nix-shell.guJPQd/tmp.jY8oQlOHVI/full-report.xml ---
+============================ 10000 passed in 6.85s =============================
+pytest test duration in ms=7385
 
 == optimized run ==
 description=This run makes use of the process that was developed in the bachelor thesis
 optimized_status=0
-optimized_total_duration_ms=21337
+optimized_total_duration_ms=21676
 optimized_tests=10000
 -- optimized stderr --
 reported testcases by testDiscovery= 10000
@@ -10171,11 +10171,9 @@ test_simple.py::test_simple[9998]
 test_simple.py::test_simple[9999]
 
 report from testExecution:
-testExecution received 10000 tests
 ============================= test session starts ==============================
 platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0
 rootdir: /home/ruben/dev/bachelor/project/benchmark/src/bench_slow_many_NoArchive
-plugins: tap-3.5, json-report-1.5.0, metadata-3.1.1
 collected 10000 items
 
 test_simple.py ......................................................... [  0%]
@@ -10319,18 +10317,18 @@ test_simple.py ......................................................... [  0%]
 ........................................................................ [ 99%]
 .......                                                                  [100%]
 
------------ generated xml file: /tmp/nix-shell.guJPQd/tmp.V5AmPKutzb -----------
-============================ 10000 passed in 16.14s ============================
-pytest test duration in ms=20531
+----------- generated xml file: /tmp/nix-shell.guJPQd/tmp.HEqUPxZjlr -----------
+============================ 10000 passed in 16.30s ============================
+pytest test duration in ms=20847
 
 == summary ==
 full run total executed tests=10000
-full run total duration in ms=7505
+full run total duration in ms=7385
 full run exit status=0
 
 optimized run total executed tests=10000
-optimized run total duration in ms=21337
+optimized run total duration in ms=21676
 optimized run exit status=0
-optimized to full run relation=2.8430
+optimized to full run relation=2.9351
 
 benchmark terminated with error=false

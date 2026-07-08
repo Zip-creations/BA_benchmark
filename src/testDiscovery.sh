@@ -1,25 +1,20 @@
 #!/usr/bin/env bash
-# base Output:
-# test/test_identity.py::test_copy
-# test/test_simple.py::test_add_item
-# test/test_simple.py::test_removing_items
-# test/test_simple.py::test_skipping
-
-OUTPUT=$(PYTHONPATH=code python3 -m pytest --collect-only -q)
+set -uo pipefail
 
 echo '<?xml version="1.0" encoding="utf-8"?>'
 echo '<testsuite>'
 
-while IFS= read -r line; do
-    [[ "$line" != *"::"* ]] && continue
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 PYTHONPATH=code \
+python3 -m pytest --collect-only -q \
+    | while IFS= read -r line; do
+        [[ "$line" != *"::"* ]] && continue
 
-    file="${line%%::*}"
-    test="${line##*::}"
+        file="${line%%::*}"
+        test="${line##*::}"
 
-    module="${file%.py}"
-    classname="${module//\//.}"
+        module="${file%.py}"
+        classname="${module//\//.}"
 
-    echo "    <testcase classname=\"$classname\" name=\"$test\" qualifiedName=\"$line\"/>"
-done <<< "$OUTPUT"
-
+        printf '    <testcase classname="%s" name="%s" qualifiedName="%s"/>\n' "$classname" "$test" "$line"
+    done
 echo '</testsuite>'
