@@ -1,18 +1,17 @@
 benchmark name=bench_medium_many_02
 benchmark absolute path=/home/ruben/dev/bachelor/project/benchmark/src/bench_medium_many_02
-timestamp=2026-07-09T17:46:26+02:00
+timestamp=2026-07-09T22:41:29+02:00
 
 == full run ==
-description=This run is represents the traditional way by always executing every testcase
+description=This run represents the traditional way by always executing every testcase
 full_status=0
-full_duration_ms=815
+full_duration_ms=849.382
 full_tests=1000
 
 report from pytest:
 ============================= test session starts ==============================
 platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0
 rootdir: /home/ruben/dev/bachelor/project/benchmark/src/bench_medium_many_02
-plugins: tap-3.5, json-report-1.5.0, metadata-3.1.1
 collected 1000 items
 
 test_simple.py ......................................................... [  5%]
@@ -31,18 +30,24 @@ test_simple.py ......................................................... [  5%]
 ........................................................................ [ 99%]
 .......                                                                  [100%]
 
---- generated xml file: /tmp/nix-shell.kU6lDe/tmp.kRU5GnYj7s/full-report.xml ---
-============================= 1000 passed in 0.66s =============================
-pytest test duration in ms=815
+--- generated xml file: /tmp/nix-shell.kU6lDe/tmp.XRASAD3zCk/full-report.xml ---
+============================= 1000 passed in 0.71s =============================
+full pytest duration in ms=849.382
 
 == optimized run ==
 description=This run makes use of the process that was developed in the bachelor thesis
 optimized_status=0
-optimized_total_duration_ms=1285
+optimized_total_duration_ms=1375.089
 optimized_tests=800
+optimized_testDiscovery_duration_ms=150.123
+optimized_testAuditor_duration_ms=8.095
+optimized_testExecution_duration_ms=1170.232
+optimized_other_overhead_duration_ms=46.639
 -- optimized stderr --
-reported testcases by testDiscovery= 1000
+reported testcases by testDiscovery=1000
+testDiscovery duration in ms=150.123
 selected testcases by testAuditor=800
+testAuditor duration in ms=8.095
 -- selected tests --
 test_simple.py::test_simple[200]
 test_simple.py::test_simple[201]
@@ -864,18 +869,24 @@ test_simple.py ......................................................... [  7%]
 ........................................................................ [ 97%]
 .......................                                                  [100%]
 
------------ generated xml file: /tmp/nix-shell.kU6lDe/tmp.V8oyw1NfeI -----------
-============================= 800 passed in 0.64s ==============================
-pytest test duration in ms=1091
+----------- generated xml file: /tmp/nix-shell.kU6lDe/tmp.yfyQk89lu0 -----------
+============================= 800 passed in 0.70s ==============================
+testExecution duration in ms=1170.232
 
 == summary ==
 full run total executed tests=1000
-full run total duration in ms=815
+full run total duration in ms=849.382
+full run pytest duration in ms=849.382
+full run other overhead in ms=0
 full run exit status=0
 
 optimized run total executed tests=800
-optimized run total duration in ms=1285
+optimized run total duration in ms=1375.089
+optimized run testDiscovery duration in ms=150.123
+optimized run testAuditor duration in ms=8.095
+optimized run testExecution duration in ms=1170.232
+optimized run other overhead in ms=46.639
 optimized run exit status=0
-optimized to full run relation=1.5767
+optimized to full run relation=1.6189
 
 benchmark terminated with error=false

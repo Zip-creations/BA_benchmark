@@ -10,9 +10,21 @@ BENCHMARK_SCRIPT="${BENCHMARK_SCRIPT:-$SCRIPT_DIR/benchmark.sh}"
 TMP_DIR="$(mktemp -d)"
 trap 'rm -rf "$TMP_DIR"' EXIT
 
-trim() {
-    awk '{$1=$1; print}'
-}
+METRICS=(
+    "full run total executed tests"
+    "full run total duration in ms"
+    "full run pytest duration in ms"
+    "full run other overhead in ms"
+
+    "optimized run total executed tests"
+    "optimized run total duration in ms"
+    "optimized run testDiscovery duration in ms"
+    "optimized run testAuditor duration in ms"
+    "optimized run testExecution duration in ms"
+    "optimized run other overhead in ms"
+
+    "optimized to full run relation"
+)
 
 extract_first_value() {
     local key="$1"
@@ -28,27 +40,6 @@ extract_first_value() {
         $1 == key {
             print trim($2)
             exit
-        }
-    ' "$file"
-}
-
-extract_last_value() {
-    local key="$1"
-    local file="$2"
-
-    awk -F= -v key="$key" '
-        function trim(s) {
-            gsub(/^[ \t\r\n]+/, "", s)
-            gsub(/[ \t\r\n]+$/, "", s)
-            return s
-        }
-
-        $1 == key {
-            value = trim($2)
-        }
-
-        END {
-            if (value != "") print value
         }
     ' "$file"
 }
@@ -85,63 +76,24 @@ append_run_result() {
 
     cp "$log_file" "$saved_log"
 
-    local full_tests
-    local full_total_ms
-    local full_test_ms
-    local full_overhead_ms
+    local metric
+    local value
+
+    for metric in "${METRICS[@]}"; do
+        value="$(extract_first_value "$metric" "$log_file")"
+        append_metric "$data_file" "$run" "$metric" "$value"
+    done
+
     local full_status
-
-    local optimized_tests
-    local optimized_total_ms
-    local optimized_test_ms
-    local optimized_overhead_ms
     local optimized_status
-
-    local relation
     local terminated_with_error
 
-    full_tests="$(extract_first_value "full run total executed tests" "$log_file")"
-    full_total_ms="$(extract_first_value "full run total duration in ms" "$log_file")"
     full_status="$(extract_first_value "full run exit status" "$log_file")"
-
-    optimized_tests="$(extract_first_value "optimized run total executed tests" "$log_file")"
-    optimized_total_ms="$(extract_first_value "optimized run total duration in ms" "$log_file")"
     optimized_status="$(extract_first_value "optimized run exit status" "$log_file")"
-
-    relation="$(extract_first_value "optimized to full run relation" "$log_file")"
     terminated_with_error="$(extract_first_value "benchmark terminated with error" "$log_file")"
 
-    # In deiner aktuellen benchmark.log kommt diese Metrik zweimal vor:
-    # 1. full run
-    # 2. optimized run
-    full_test_ms="$(extract_first_value "pytest test duration in ms" "$log_file")"
-    optimized_test_ms="$(extract_last_value "pytest test duration in ms" "$log_file")"
-
-    if [[ -n "$full_total_ms" && -n "$full_test_ms" ]]; then
-        full_overhead_ms=$(( full_total_ms - full_test_ms ))
-    else
-        full_overhead_ms=""
-    fi
-
-    if [[ -n "$optimized_total_ms" && -n "$optimized_test_ms" ]]; then
-        optimized_overhead_ms=$(( optimized_total_ms - optimized_test_ms ))
-    else
-        optimized_overhead_ms=""
-    fi
-
-    append_metric "$data_file" "$run" "full run total executed tests" "$full_tests"
-    append_metric "$data_file" "$run" "full run total duration in ms" "$full_total_ms"
-    append_metric "$data_file" "$run" "full run test duration in ms" "$full_test_ms"
-    append_metric "$data_file" "$run" "full run overhead in ms" "$full_overhead_ms"
     append_metric "$data_file" "$run" "full run exit status" "$full_status"
-
-    append_metric "$data_file" "$run" "optimized run total executed tests" "$optimized_tests"
-    append_metric "$data_file" "$run" "optimized run total duration in ms" "$optimized_total_ms"
-    append_metric "$data_file" "$run" "optimized run test duration in ms" "$optimized_test_ms"
-    append_metric "$data_file" "$run" "optimized run overhead in ms" "$optimized_overhead_ms"
     append_metric "$data_file" "$run" "optimized run exit status" "$optimized_status"
-
-    append_metric "$data_file" "$run" "optimized to full run relation" "$relation"
     append_metric "$data_file" "$run" "benchmark terminated with error" "$terminated_with_error"
 }
 
@@ -157,10 +109,25 @@ average_metric() {
 
         END {
             if (count > 0) {
-                printf "%.6f", sum / count
+                printf "%.4f", sum / count
             } else {
                 printf "n/a"
             }
+        }
+    ' "$data_file"
+}
+
+count_nonzero_status() {
+    local data_file="$1"
+    local key="$2"
+
+    awk -F'\t' -v key="$key" '
+        $2 == key && $3 != "0" {
+            count += 1
+        }
+
+        END {
+            print count + 0
         }
     ' "$data_file"
 }
@@ -181,6 +148,20 @@ count_metric_value() {
     ' "$data_file"
 }
 
+copy_numbered_logs_back() {
+    local saved_dir="$1"
+    local result_dir="$2"
+
+    rm -f "$result_dir"/benchmark_*.log
+    rm -f "$result_dir/benchmark.log"
+
+    local log
+    for log in "$saved_dir"/benchmark_*.log; do
+        [[ -f "$log" ]] || continue
+        cp "$log" "$result_dir/"
+    done
+}
+
 write_average_log() {
     local bench_dir="$1"
 
@@ -198,11 +179,7 @@ write_average_log() {
     fi
 
     mkdir -p "$result_dir"
-
-    # benchmark.sh erzeugt pro Lauf benchmark.log und löscht result/.
-    # Hier werden am Ende nur die nummerierten Logs zurückgelegt.
-    rm -f "$result_dir/benchmark.log"
-    cp "$saved_dir"/benchmark_*.log "$result_dir/"
+    copy_numbered_logs_back "$saved_dir" "$result_dir"
 
     local runs_recorded
     runs_recorded="$(awk -F'\t' '{print $1}' "$data_file" | sort -n | uniq | wc -l)"
@@ -217,20 +194,22 @@ write_average_log() {
         echo "== averages =="
         echo "full run total executed tests average=$(average_metric "$data_file" "full run total executed tests")"
         echo "full run total duration in ms average=$(average_metric "$data_file" "full run total duration in ms")"
-        echo "full run test duration in ms average=$(average_metric "$data_file" "full run test duration in ms")"
-        echo "full run overhead in ms average=$(average_metric "$data_file" "full run overhead in ms")"
+        echo "full run pytest duration in ms average=$(average_metric "$data_file" "full run pytest duration in ms")"
+        echo "full run other overhead in ms average=$(average_metric "$data_file" "full run other overhead in ms")"
 
         echo
         echo "optimized run total executed tests average=$(average_metric "$data_file" "optimized run total executed tests")"
         echo "optimized run total duration in ms average=$(average_metric "$data_file" "optimized run total duration in ms")"
-        echo "optimized run test duration in ms average=$(average_metric "$data_file" "optimized run test duration in ms")"
-        echo "optimized run overhead in ms average=$(average_metric "$data_file" "optimized run overhead in ms")"
+        echo "optimized run testDiscovery duration in ms average=$(average_metric "$data_file" "optimized run testDiscovery duration in ms")"
+        echo "optimized run testAuditor duration in ms average=$(average_metric "$data_file" "optimized run testAuditor duration in ms")"
+        echo "optimized run testExecution duration in ms average=$(average_metric "$data_file" "optimized run testExecution duration in ms")"
+        echo "optimized run other overhead in ms average=$(average_metric "$data_file" "optimized run other overhead in ms")"
         echo "optimized to full run relation average=$(average_metric "$data_file" "optimized to full run relation")"
 
         echo
         echo "== status =="
-        echo "full run failed runs=$(awk -F'\t' '$2 == "full run exit status" && $3 != "0" { count++ } END { print count + 0 }' "$data_file")"
-        echo "optimized run failed runs=$(awk -F'\t' '$2 == "optimized run exit status" && $3 != "0" { count++ } END { print count + 0 }' "$data_file")"
+        echo "full run failed runs=$(count_nonzero_status "$data_file" "full run exit status")"
+        echo "optimized run failed runs=$(count_nonzero_status "$data_file" "optimized run exit status")"
         echo "benchmark terminated with error runs=$(count_metric_value "$data_file" "benchmark terminated with error" "true")"
 
     } > "$average_log"
@@ -251,12 +230,14 @@ main() {
             echo "benchmark.sh returned non-zero in run $run" >&2
         fi
 
+        local bench_dir
         for bench_dir in "$BENCH_ROOT"/bench_*; do
             [[ -d "$bench_dir" ]] || continue
             append_run_result "$run" "$bench_dir"
         done
     done
 
+    local bench_dir
     for bench_dir in "$BENCH_ROOT"/bench_*; do
         [[ -d "$bench_dir" ]] || continue
         write_average_log "$bench_dir"

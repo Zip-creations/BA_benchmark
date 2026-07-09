@@ -1,35 +1,40 @@
 benchmark name=bench_fast_many_02
 benchmark absolute path=/home/ruben/dev/bachelor/project/benchmark/src/bench_fast_many_02
-timestamp=2026-07-09T17:48:57+02:00
+timestamp=2026-07-09T22:43:56+02:00
 
 == full run ==
-description=This run is represents the traditional way by always executing every testcase
+description=This run represents the traditional way by always executing every testcase
 full_status=0
-full_duration_ms=196
+full_duration_ms=172.506
 full_tests=100
 
 report from pytest:
 ============================= test session starts ==============================
 platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0
 rootdir: /home/ruben/dev/bachelor/project/benchmark/src/bench_fast_many_02
-plugins: tap-3.5, json-report-1.5.0, metadata-3.1.1
 collected 100 items
 
 test_simple.py ......................................................... [ 57%]
 ...........................................                              [100%]
 
---- generated xml file: /tmp/nix-shell.kU6lDe/tmp.lGxyM7k1tv/full-report.xml ---
+--- generated xml file: /tmp/nix-shell.kU6lDe/tmp.e38a9xdSad/full-report.xml ---
 ============================= 100 passed in 0.05s ==============================
-pytest test duration in ms=196
+full pytest duration in ms=172.506
 
 == optimized run ==
 description=This run makes use of the process that was developed in the bachelor thesis
 optimized_status=0
-optimized_total_duration_ms=358
+optimized_total_duration_ms=364.375
 optimized_tests=80
+optimized_testDiscovery_duration_ms=122.567
+optimized_testAuditor_duration_ms=4.345
+optimized_testExecution_duration_ms=195.477
+optimized_other_overhead_duration_ms=41.986
 -- optimized stderr --
-reported testcases by testDiscovery= 100
+reported testcases by testDiscovery=100
+testDiscovery duration in ms=122.567
 selected testcases by testAuditor=80
+testAuditor duration in ms=4.345
 -- selected tests --
 test_simple.py::test_simple[20]
 test_simple.py::test_simple[21]
@@ -121,18 +126,24 @@ collected 80 items
 test_simple.py ......................................................... [ 71%]
 .......................                                                  [100%]
 
------------ generated xml file: /tmp/nix-shell.kU6lDe/tmp.LAYf5yyEPX -----------
+----------- generated xml file: /tmp/nix-shell.kU6lDe/tmp.vq8o9L3tqR -----------
 ============================== 80 passed in 0.04s ==============================
-pytest test duration in ms=199
+testExecution duration in ms=195.477
 
 == summary ==
 full run total executed tests=100
-full run total duration in ms=196
+full run total duration in ms=172.506
+full run pytest duration in ms=172.506
+full run other overhead in ms=0
 full run exit status=0
 
 optimized run total executed tests=80
-optimized run total duration in ms=358
+optimized run total duration in ms=364.375
+optimized run testDiscovery duration in ms=122.567
+optimized run testAuditor duration in ms=4.345
+optimized run testExecution duration in ms=195.477
+optimized run other overhead in ms=41.986
 optimized run exit status=0
-optimized to full run relation=1.8265
+optimized to full run relation=2.1122
 
 benchmark terminated with error=false

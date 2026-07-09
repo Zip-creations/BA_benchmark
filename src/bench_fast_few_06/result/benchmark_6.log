@@ -1,34 +1,39 @@
 benchmark name=bench_fast_few_06
 benchmark absolute path=/home/ruben/dev/bachelor/project/benchmark/src/bench_fast_few_06
-timestamp=2026-07-09T17:40:49+02:00
+timestamp=2026-07-09T22:35:58+02:00
 
 == full run ==
-description=This run is represents the traditional way by always executing every testcase
+description=This run represents the traditional way by always executing every testcase
 full_status=0
-full_duration_ms=158
+full_duration_ms=128.357
 full_tests=10
 
 report from pytest:
 ============================= test session starts ==============================
 platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0
 rootdir: /home/ruben/dev/bachelor/project/benchmark/src/bench_fast_few_06
-plugins: tap-3.5, json-report-1.5.0, metadata-3.1.1
 collected 10 items
 
 test_simple.py ..........                                                [100%]
 
---- generated xml file: /tmp/nix-shell.kU6lDe/tmp.aOY42fHKJn/full-report.xml ---
+--- generated xml file: /tmp/nix-shell.kU6lDe/tmp.CTeW044mEv/full-report.xml ---
 ============================== 10 passed in 0.01s ==============================
-pytest test duration in ms=158
+full pytest duration in ms=128.357
 
 == optimized run ==
 description=This run makes use of the process that was developed in the bachelor thesis
 optimized_status=0
-optimized_total_duration_ms=287
+optimized_total_duration_ms=297.088
 optimized_tests=4
+optimized_testDiscovery_duration_ms=122.035
+optimized_testAuditor_duration_ms=3.437
+optimized_testExecution_duration_ms=131.092
+optimized_other_overhead_duration_ms=40.524
 -- optimized stderr --
-reported testcases by testDiscovery= 10
+reported testcases by testDiscovery=10
+testDiscovery duration in ms=122.035
 selected testcases by testAuditor=4
+testAuditor duration in ms=3.437
 -- selected tests --
 test_simple.py::test_simple[6]
 test_simple.py::test_simple[7]
@@ -43,18 +48,24 @@ collected 4 items
 
 test_simple.py ....                                                      [100%]
 
------------ generated xml file: /tmp/nix-shell.kU6lDe/tmp.Lowc9Lfmro -----------
+----------- generated xml file: /tmp/nix-shell.kU6lDe/tmp.RpqFrsiRSN -----------
 ============================== 4 passed in 0.01s ===============================
-pytest test duration in ms=133
+testExecution duration in ms=131.092
 
 == summary ==
 full run total executed tests=10
-full run total duration in ms=158
+full run total duration in ms=128.357
+full run pytest duration in ms=128.357
+full run other overhead in ms=0
 full run exit status=0
 
 optimized run total executed tests=4
-optimized run total duration in ms=287
+optimized run total duration in ms=297.088
+optimized run testDiscovery duration in ms=122.035
+optimized run testAuditor duration in ms=3.437
+optimized run testExecution duration in ms=131.092
+optimized run other overhead in ms=40.524
 optimized run exit status=0
-optimized to full run relation=1.8165
+optimized to full run relation=2.3145
 
 benchmark terminated with error=false

@@ -1,48 +1,59 @@
 benchmark name=bench_fast_few_10
 benchmark absolute path=/home/ruben/dev/bachelor/project/benchmark/src/bench_fast_few_10
-timestamp=2026-07-09T17:27:13+02:00
+timestamp=2026-07-09T22:22:41+02:00
 
 == full run ==
-description=This run is represents the traditional way by always executing every testcase
+description=This run represents the traditional way by always executing every testcase
 full_status=0
-full_duration_ms=160
+full_duration_ms=131.171
 full_tests=10
 
 report from pytest:
 ============================= test session starts ==============================
 platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0
 rootdir: /home/ruben/dev/bachelor/project/benchmark/src/bench_fast_few_10
-plugins: tap-3.5, json-report-1.5.0, metadata-3.1.1
 collected 10 items
 
 test_simple.py ..........                                                [100%]
 
---- generated xml file: /tmp/nix-shell.kU6lDe/tmp.ig6R3gHWJ9/full-report.xml ---
+--- generated xml file: /tmp/nix-shell.kU6lDe/tmp.Fw1vRRILvM/full-report.xml ---
 ============================== 10 passed in 0.01s ==============================
-pytest test duration in ms=160
+full pytest duration in ms=131.171
 
 == optimized run ==
 description=This run makes use of the process that was developed in the bachelor thesis
 optimized_status=0
-optimized_total_duration_ms=161
+optimized_total_duration_ms=175.498
 optimized_tests=0
+optimized_testDiscovery_duration_ms=122.162
+optimized_testAuditor_duration_ms=3.680
+optimized_testExecution_duration_ms=9.541
+optimized_other_overhead_duration_ms=40.115
 -- optimized stderr --
-reported testcases by testDiscovery= 10
+reported testcases by testDiscovery=10
+testDiscovery duration in ms=122.162
 selected testcases by testAuditor=0
+testAuditor duration in ms=3.680
 -- selected tests --
 (none)
 
 report from testExecution:
-pytest test duration in ms=7
+testExecution duration in ms=9.541
 
 == summary ==
 full run total executed tests=10
-full run total duration in ms=160
+full run total duration in ms=131.171
+full run pytest duration in ms=131.171
+full run other overhead in ms=0
 full run exit status=0
 
 optimized run total executed tests=0
-optimized run total duration in ms=161
+optimized run total duration in ms=175.498
+optimized run testDiscovery duration in ms=122.162
+optimized run testAuditor duration in ms=3.680
+optimized run testExecution duration in ms=9.541
+optimized run other overhead in ms=40.115
 optimized run exit status=0
-optimized to full run relation=1.0063
+optimized to full run relation=1.3379
 
 benchmark terminated with error=false

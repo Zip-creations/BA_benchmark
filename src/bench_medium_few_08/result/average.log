@@ -1,19 +1,21 @@
 benchmark=bench_medium_few_08
 runs requested=10
 runs recorded=10
-timestamp=2026-07-09T17:54:19+02:00
+timestamp=2026-07-09T22:49:14+02:00
 
 == averages ==
-full run total executed tests average=10.000000
-full run total duration in ms average=488.400000
-full run test duration in ms average=488.400000
-full run overhead in ms average=0.000000
+full run total executed tests average=10.0000
+full run total duration in ms average=357.4798
+full run pytest duration in ms average=357.4798
+full run other overhead in ms average=0.0000
 
-optimized run total executed tests average=2.000000
-optimized run total duration in ms average=341.500000
-optimized run test duration in ms average=183.100000
-optimized run overhead in ms average=158.400000
-optimized to full run relation average=0.705010
+optimized run total executed tests average=2.0000
+optimized run total duration in ms average=347.3426
+optimized run testDiscovery duration in ms average=121.6805
+optimized run testAuditor duration in ms average=3.6524
+optimized run testExecution duration in ms average=181.0639
+optimized run other overhead in ms average=40.9458
+optimized to full run relation average=0.9722
 
 == status ==
 full run failed runs=0

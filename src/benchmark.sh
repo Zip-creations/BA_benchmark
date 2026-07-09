@@ -8,6 +8,10 @@ TEST_DISCOVERY_SCRIPT="${TEST_DISCOVERY_SCRIPT:-$SCRIPT_DIR/testDiscovery.sh}"
 TEST_EXECUTION_SCRIPT="${TEST_EXECUTION_SCRIPT:-$SCRIPT_DIR/testExecution.sh}"
 TEST_AUDITOR="${TEST_AUDITOR:-testAuditor}"
 
+OPT_TEST_DISCOVERY_DURATION_MS=0
+OPT_TEST_AUDITOR_DURATION_MS=0
+OPT_TEST_EXECUTION_DURATION_MS=0
+
 now_ns() {
     date +%s%N
 }
@@ -15,7 +19,7 @@ now_ns() {
 duration_ms() {
     local start="$1"
     local end="$2"
-    echo $(( (end - start) / 1000000 ))
+    awk -v start="$start" -v end="$end" 'BEGIN { printf "%.3f", (end - start) / 1000000 }'
 }
 
 emit_cdata() {
@@ -27,12 +31,10 @@ emit_cdata() {
 
 count_report_tests() {
     local report="$1"
-
     if [[ ! -s "$report" ]]; then
         echo 0
         return
     fi
-
     python3 - "$report" <<'PY'
 import sys
 import xml.etree.ElementTree as ET
@@ -56,12 +58,10 @@ PY
 
 count_test_list() {
     local file="$1"
-
     if [[ ! -f "$file" ]]; then
         echo 0
         return
     fi
-
     awk 'NF { count++ } END { print count + 0 }' "$file"
 }
 
@@ -69,9 +69,8 @@ run_full_pytest() {
     local report="$1"
     local status=0
 
-    PYTHONPATH="${PYTHONPATH:-code}" python3 -m pytest \
-        --junit-xml="$report" \
-        >&2 || status=$?
+    PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 PYTHONPATH="${PYTHONPATH:-code}" \
+        python3 -m pytest --junit-xml="$report" >&2 || status=$?
 
     return "$status"
 }
@@ -88,7 +87,6 @@ build_auditor_input() {
         printf '%s\n' '  <testDiscovery>'
         emit_cdata < "$discovery_file"
         printf '\n%s\n' '  </testDiscovery>'
-
         printf '%s\n' '  <reports>'
 
         if [[ -d "$archive_dir" ]]; then
@@ -113,30 +111,53 @@ run_optimized_testauditor() {
     local selected_tests="$tmp_dir/selected-tests.txt"
 
     local status=0
+    local discovered_tests
+    local selected_tests_count
+
+    local start
+    local end
+
+    OPT_TEST_DISCOVERY_DURATION_MS=0
+    OPT_TEST_AUDITOR_DURATION_MS=0
+    OPT_TEST_EXECUTION_DURATION_MS=0
 
     : > "$output_report"
 
+    start="$(now_ns)"
     "$TEST_DISCOVERY_SCRIPT" > "$discovery_file"
     status=$?
+    end="$(now_ns)"
+    OPT_TEST_DISCOVERY_DURATION_MS="$(duration_ms "$start" "$end")"
+
     if [[ "$status" -ne 0 ]]; then
         echo "testDiscovery failed" >&2
+        echo "testDiscovery duration in ms=$OPT_TEST_DISCOVERY_DURATION_MS" >&2
         return "$status"
     fi
 
     discovered_tests="$(count_report_tests "$discovery_file")"
-    echo "reported testcases by testDiscovery= $discovered_tests" >&2
+    echo "reported testcases by testDiscovery=$discovered_tests" >&2
+    echo "testDiscovery duration in ms=$OPT_TEST_DISCOVERY_DURATION_MS" >&2
 
     build_auditor_input "$discovery_file" "archive" "$auditor_input"
 
+    start="$(now_ns)"
     "$TEST_AUDITOR" < "$auditor_input" > "$selected_tests"
     status=$?
+    end="$(now_ns)"
+    OPT_TEST_AUDITOR_DURATION_MS="$(duration_ms "$start" "$end")"
+
     if [[ "$status" -ne 0 ]]; then
         echo "testAuditor failed" >&2
+        echo "testAuditor duration in ms=$OPT_TEST_AUDITOR_DURATION_MS" >&2
         return "$status"
     fi
 
-    echo "selected testcases by testAuditor=$(count_test_list "$selected_tests")" >&2
+    selected_tests_count="$(count_test_list "$selected_tests")"
+    echo "selected testcases by testAuditor=$selected_tests_count" >&2
+    echo "testAuditor duration in ms=$OPT_TEST_AUDITOR_DURATION_MS" >&2
     echo "-- selected tests --" >&2
+
     if [[ -s "$selected_tests" ]]; then
         cat "$selected_tests" >&2
     else
@@ -146,17 +167,13 @@ run_optimized_testauditor() {
     echo >&2
     echo "report from testExecution:" >&2
 
-    local execution_start
-    local execution_end
-    local execution_duration_ms
-
-    execution_start="$(now_ns)"
+    start="$(now_ns)"
     "$TEST_EXECUTION_SCRIPT" < "$selected_tests" > "$output_report"
     status=$?
-    execution_end="$(now_ns)"
+    end="$(now_ns)"
+    OPT_TEST_EXECUTION_DURATION_MS="$(duration_ms "$start" "$end")"
 
-    execution_duration_ms="$(duration_ms "$execution_start" "$execution_end")"
-    echo "pytest test duration in ms=$execution_duration_ms" >&2
+    echo "testExecution duration in ms=$OPT_TEST_EXECUTION_DURATION_MS" >&2
 
     return "$status"
 }
@@ -166,17 +183,14 @@ validate_shared_scripts() {
         echo "testDiscovery script not found: $TEST_DISCOVERY_SCRIPT" >&2
         return 1
     fi
-
     if [[ ! -f "$TEST_EXECUTION_SCRIPT" ]]; then
         echo "testExecution script not found: $TEST_EXECUTION_SCRIPT" >&2
         return 1
     fi
-
     if ! command -v "$TEST_AUDITOR" >/dev/null 2>&1; then
         echo "$TEST_AUDITOR not found in PATH" >&2
         return 1
     fi
-
     if ! command -v python3 >/dev/null 2>&1; then
         echo "python3 not found in PATH" >&2
         return 1
@@ -185,7 +199,6 @@ validate_shared_scripts() {
 
 validate_benchmark_dir() {
     local bench_abs="$1"
-
     if [[ ! -d "$bench_abs" ]]; then
         echo "benchmark directory not found: $bench_abs" >&2
         return 1
@@ -238,11 +251,13 @@ run_benchmark_dir() {
         local optimized_status
         local optimized_duration_ms
         local optimized_tests
+        local optimized_measured_parts_ms
+        local optimized_other_overhead_ms
 
         local relative_runtime
 
         echo "== full run ==" >> "$log_file"
-        echo "description=This run is represents the traditional way by always executing every testcase" >> "$log_file"
+        echo "description=This run represents the traditional way by always executing every testcase" >> "$log_file"
 
         start="$(now_ns)"
         run_full_pytest "$full_report" 2> "$full_stderr"
@@ -258,7 +273,7 @@ run_benchmark_dir() {
         echo >> "$log_file"
         echo "report from pytest:" >> "$log_file"
         cat "$full_stderr" >> "$log_file"
-        echo "pytest test duration in ms=$full_duration_ms" >> "$log_file"
+        echo "full pytest duration in ms=$full_duration_ms" >> "$log_file"
         echo >> "$log_file"
 
         echo "== optimized run ==" >> "$log_file"
@@ -272,9 +287,36 @@ run_benchmark_dir() {
         optimized_duration_ms="$(duration_ms "$start" "$end")"
         optimized_tests="$(count_report_tests "$optimized_report")"
 
+        optimized_measured_parts_ms="$(
+            awk \
+                -v discovery="$OPT_TEST_DISCOVERY_DURATION_MS" \
+                -v auditor="$OPT_TEST_AUDITOR_DURATION_MS" \
+                -v execution="$OPT_TEST_EXECUTION_DURATION_MS" \
+                'BEGIN {
+                    printf "%.3f", discovery + auditor + execution
+                }'
+        )"
+
+        optimized_other_overhead_ms="$(
+            awk \
+                -v total="$optimized_duration_ms" \
+                -v measured="$optimized_measured_parts_ms" \
+                'BEGIN {
+                    overhead = total - measured
+                    if (overhead < 0) {
+                        overhead = 0
+                    }
+                    printf "%.3f", overhead
+                }'
+        )"
+
         echo "optimized_status=$optimized_status" >> "$log_file"
         echo "optimized_total_duration_ms=$optimized_duration_ms" >> "$log_file"
         echo "optimized_tests=$optimized_tests" >> "$log_file"
+        echo "optimized_testDiscovery_duration_ms=$OPT_TEST_DISCOVERY_DURATION_MS" >> "$log_file"
+        echo "optimized_testAuditor_duration_ms=$OPT_TEST_AUDITOR_DURATION_MS" >> "$log_file"
+        echo "optimized_testExecution_duration_ms=$OPT_TEST_EXECUTION_DURATION_MS" >> "$log_file"
+        echo "optimized_other_overhead_duration_ms=$optimized_other_overhead_ms" >> "$log_file"
         echo "-- optimized stderr --" >> "$log_file"
         cat "$optimized_stderr" >> "$log_file"
         echo >> "$log_file"
@@ -282,10 +324,17 @@ run_benchmark_dir() {
         echo "== summary ==" >> "$log_file"
         echo "full run total executed tests=$full_tests" >> "$log_file"
         echo "full run total duration in ms=$full_duration_ms" >> "$log_file"
+        echo "full run pytest duration in ms=$full_duration_ms" >> "$log_file"
+        echo "full run other overhead in ms=0" >> "$log_file"
         echo "full run exit status=$full_status" >> "$log_file"
         echo >> "$log_file"
+
         echo "optimized run total executed tests=$optimized_tests" >> "$log_file"
         echo "optimized run total duration in ms=$optimized_duration_ms" >> "$log_file"
+        echo "optimized run testDiscovery duration in ms=$OPT_TEST_DISCOVERY_DURATION_MS" >> "$log_file"
+        echo "optimized run testAuditor duration in ms=$OPT_TEST_AUDITOR_DURATION_MS" >> "$log_file"
+        echo "optimized run testExecution duration in ms=$OPT_TEST_EXECUTION_DURATION_MS" >> "$log_file"
+        echo "optimized run other overhead in ms=$optimized_other_overhead_ms" >> "$log_file"
         echo "optimized run exit status=$optimized_status" >> "$log_file"
 
         relative_runtime="$(
@@ -310,7 +359,6 @@ run_benchmark_dir() {
     )
 
     local benchmark_status=$?
-
     rm -rf "$tmp_dir"
 
     if [[ "$benchmark_status" -eq 0 ]]; then
@@ -318,7 +366,6 @@ run_benchmark_dir() {
     else
         echo "benchmark failed for $bench_name; see $log_file" >&2
     fi
-
     return "$benchmark_status"
 }
 
@@ -342,7 +389,6 @@ main() {
         echo "No bench_* directories found in $BENCH_ROOT." >&2
         return 1
     fi
-
     return "$failed"
 }
 
