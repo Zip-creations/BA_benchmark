@@ -1,0 +1,62 @@
+benchmark name=bench_medium_few_04
+benchmark absolute path=/home/ruben/dev/bachelor/project/benchmark/src/bench_medium_few_04
+timestamp=2026-07-09T17:46:20+02:00
+
+== full run ==
+description=This run is represents the traditional way by always executing every testcase
+full_status=0
+full_duration_ms=492
+full_tests=10
+
+report from pytest:
+============================= test session starts ==============================
+platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0
+rootdir: /home/ruben/dev/bachelor/project/benchmark/src/bench_medium_few_04
+plugins: tap-3.5, json-report-1.5.0, metadata-3.1.1
+collected 10 items
+
+test_simple.py ..........                                                [100%]
+
+--- generated xml file: /tmp/nix-shell.kU6lDe/tmp.dI35rcPPxt/full-report.xml ---
+============================== 10 passed in 0.35s ==============================
+pytest test duration in ms=492
+
+== optimized run ==
+description=This run makes use of the process that was developed in the bachelor thesis
+optimized_status=0
+optimized_total_duration_ms=427
+optimized_tests=6
+-- optimized stderr --
+reported testcases by testDiscovery= 10
+selected testcases by testAuditor=6
+-- selected tests --
+test_simple.py::test_simple[4]
+test_simple.py::test_simple[5]
+test_simple.py::test_simple[6]
+test_simple.py::test_simple[7]
+test_simple.py::test_simple[8]
+test_simple.py::test_simple[9]
+
+report from testExecution:
+============================= test session starts ==============================
+platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0
+rootdir: /home/ruben/dev/bachelor/project/benchmark/src/bench_medium_few_04
+collected 6 items
+
+test_simple.py ......                                                    [100%]
+
+----------- generated xml file: /tmp/nix-shell.kU6lDe/tmp.aop6DjF6q4 -----------
+============================== 6 passed in 0.14s ===============================
+pytest test duration in ms=275
+
+== summary ==
+full run total executed tests=10
+full run total duration in ms=492
+full run exit status=0
+
+optimized run total executed tests=6
+optimized run total duration in ms=427
+optimized run exit status=0
+optimized to full run relation=0.8679
+
+benchmark terminated with error=false

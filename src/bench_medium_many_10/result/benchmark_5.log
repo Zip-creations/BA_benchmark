@@ -1,0 +1,62 @@
+benchmark name=bench_medium_many_10
+benchmark absolute path=/home/ruben/dev/bachelor/project/benchmark/src/bench_medium_many_10
+timestamp=2026-07-09T17:38:29+02:00
+
+== full run ==
+description=This run is represents the traditional way by always executing every testcase
+full_status=0
+full_duration_ms=847
+full_tests=1000
+
+report from pytest:
+============================= test session starts ==============================
+platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0
+rootdir: /home/ruben/dev/bachelor/project/benchmark/src/bench_medium_many_10
+plugins: tap-3.5, json-report-1.5.0, metadata-3.1.1
+collected 1000 items
+
+test_simple.py ......................................................... [  5%]
+........................................................................ [ 12%]
+........................................................................ [ 20%]
+........................................................................ [ 27%]
+........................................................................ [ 34%]
+........................................................................ [ 41%]
+........................................................................ [ 48%]
+........................................................................ [ 56%]
+........................................................................ [ 63%]
+........................................................................ [ 70%]
+........................................................................ [ 77%]
+........................................................................ [ 84%]
+........................................................................ [ 92%]
+........................................................................ [ 99%]
+.......                                                                  [100%]
+
+--- generated xml file: /tmp/nix-shell.kU6lDe/tmp.H0wcCTlSmR/full-report.xml ---
+============================= 1000 passed in 0.68s =============================
+pytest test duration in ms=847
+
+== optimized run ==
+description=This run makes use of the process that was developed in the bachelor thesis
+optimized_status=0
+optimized_total_duration_ms=202
+optimized_tests=0
+-- optimized stderr --
+reported testcases by testDiscovery= 1000
+selected testcases by testAuditor=0
+-- selected tests --
+(none)
+
+report from testExecution:
+pytest test duration in ms=8
+
+== summary ==
+full run total executed tests=1000
+full run total duration in ms=847
+full run exit status=0
+
+optimized run total executed tests=0
+optimized run total duration in ms=202
+optimized run exit status=0
+optimized to full run relation=0.2385
+
+benchmark terminated with error=false

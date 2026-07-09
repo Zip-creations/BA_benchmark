@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites name="pytest tests">
+    <testsuite name="pytest" errors="0" failures="0" skipped="0" tests="100" time="0.067"
+        timestamp="2026-07-08T12:06:25.734298+02:00" hostname="DESKTOP-I9APAL0">
+        <testcase classname="test_simple" name="test_simple[0]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[1]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[2]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[3]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[4]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[5]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[6]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[7]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[8]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[9]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[10]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[11]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[12]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[13]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[14]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[15]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[16]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[17]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[18]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[19]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[20]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[21]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[22]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[23]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[24]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[25]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[26]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[27]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[28]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[29]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[30]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[31]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[32]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[33]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[34]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[35]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[36]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[37]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[38]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[39]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[40]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[41]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[42]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[43]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[44]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[45]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[46]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[47]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[48]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[49]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[50]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[51]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[52]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[53]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[54]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[55]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[56]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[57]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[58]" time="0.000" />
+        <testcase classname="test_simple" name="test_simple[59]" time="0.000" />
+    </testsuite>
+</testsuites>

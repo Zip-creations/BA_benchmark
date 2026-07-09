@@ -1,0 +1,21 @@
+benchmark=bench_slow_many_08
+runs requested=10
+runs recorded=10
+timestamp=2026-07-09T17:54:20+02:00
+
+== averages ==
+full run total executed tests average=10000.000000
+full run total duration in ms average=7087.700000
+full run test duration in ms average=7087.700000
+full run overhead in ms average=0.000000
+
+optimized run total executed tests average=2000.000000
+optimized run total duration in ms average=5136.300000
+optimized run test duration in ms average=4307.800000
+optimized run overhead in ms average=828.500000
+optimized to full run relation average=0.724900
+
+== status ==
+full run failed runs=0
+optimized run failed runs=0
+benchmark terminated with error runs=0

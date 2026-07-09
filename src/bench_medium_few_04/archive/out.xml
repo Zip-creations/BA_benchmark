@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites name="pytest tests">
+    <testsuite name="pytest" errors="0" failures="0" skipped="0" tests="10" time="0.394"
+        timestamp="2026-07-08T11:53:44.977867+02:00" hostname="DESKTOP-I9APAL0">
+        <testcase classname="test_simple" name="test_simple[0]" time="0.038" />
+        <testcase classname="test_simple" name="test_simple[1]" time="0.038" />
+        <testcase classname="test_simple" name="test_simple[2]" time="0.038" />
+        <testcase classname="test_simple" name="test_simple[3]" time="0.036" />
+    </testsuite>
+</testsuites>

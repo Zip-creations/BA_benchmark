@@ -1,0 +1,97 @@
+benchmark name=bench_fast_many_06
+benchmark absolute path=/home/ruben/dev/bachelor/project/benchmark/src/bench_fast_many_06
+timestamp=2026-07-09T17:51:42+02:00
+
+== full run ==
+description=This run is represents the traditional way by always executing every testcase
+full_status=0
+full_duration_ms=191
+full_tests=100
+
+report from pytest:
+============================= test session starts ==============================
+platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0
+rootdir: /home/ruben/dev/bachelor/project/benchmark/src/bench_fast_many_06
+plugins: tap-3.5, json-report-1.5.0, metadata-3.1.1
+collected 100 items
+
+test_simple.py ......................................................... [ 57%]
+...........................................                              [100%]
+
+--- generated xml file: /tmp/nix-shell.kU6lDe/tmp.WEueMfcYyD/full-report.xml ---
+============================= 100 passed in 0.04s ==============================
+pytest test duration in ms=191
+
+== optimized run ==
+description=This run makes use of the process that was developed in the bachelor thesis
+optimized_status=0
+optimized_total_duration_ms=328
+optimized_tests=40
+-- optimized stderr --
+reported testcases by testDiscovery= 100
+selected testcases by testAuditor=40
+-- selected tests --
+test_simple.py::test_simple[60]
+test_simple.py::test_simple[61]
+test_simple.py::test_simple[62]
+test_simple.py::test_simple[63]
+test_simple.py::test_simple[64]
+test_simple.py::test_simple[65]
+test_simple.py::test_simple[66]
+test_simple.py::test_simple[67]
+test_simple.py::test_simple[68]
+test_simple.py::test_simple[69]
+test_simple.py::test_simple[70]
+test_simple.py::test_simple[71]
+test_simple.py::test_simple[72]
+test_simple.py::test_simple[73]
+test_simple.py::test_simple[74]
+test_simple.py::test_simple[75]
+test_simple.py::test_simple[76]
+test_simple.py::test_simple[77]
+test_simple.py::test_simple[78]
+test_simple.py::test_simple[79]
+test_simple.py::test_simple[80]
+test_simple.py::test_simple[81]
+test_simple.py::test_simple[82]
+test_simple.py::test_simple[83]
+test_simple.py::test_simple[84]
+test_simple.py::test_simple[85]
+test_simple.py::test_simple[86]
+test_simple.py::test_simple[87]
+test_simple.py::test_simple[88]
+test_simple.py::test_simple[89]
+test_simple.py::test_simple[90]
+test_simple.py::test_simple[91]
+test_simple.py::test_simple[92]
+test_simple.py::test_simple[93]
+test_simple.py::test_simple[94]
+test_simple.py::test_simple[95]
+test_simple.py::test_simple[96]
+test_simple.py::test_simple[97]
+test_simple.py::test_simple[98]
+test_simple.py::test_simple[99]
+
+report from testExecution:
+============================= test session starts ==============================
+platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0
+rootdir: /home/ruben/dev/bachelor/project/benchmark/src/bench_fast_many_06
+collected 40 items
+
+test_simple.py ........................................                  [100%]
+
+----------- generated xml file: /tmp/nix-shell.kU6lDe/tmp.3g6x5h9mvC -----------
+============================== 40 passed in 0.02s ==============================
+pytest test duration in ms=164
+
+== summary ==
+full run total executed tests=100
+full run total duration in ms=191
+full run exit status=0
+
+optimized run total executed tests=40
+optimized run total duration in ms=328
+optimized run exit status=0
+optimized to full run relation=1.7173
+
+benchmark terminated with error=false

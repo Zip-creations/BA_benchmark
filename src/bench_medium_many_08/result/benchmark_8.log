@@ -1,0 +1,272 @@
+benchmark name=bench_medium_many_08
+benchmark absolute path=/home/ruben/dev/bachelor/project/benchmark/src/bench_medium_many_08
+timestamp=2026-07-09T17:46:32+02:00
+
+== full run ==
+description=This run is represents the traditional way by always executing every testcase
+full_status=0
+full_duration_ms=806
+full_tests=1000
+
+report from pytest:
+============================= test session starts ==============================
+platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0
+rootdir: /home/ruben/dev/bachelor/project/benchmark/src/bench_medium_many_08
+plugins: tap-3.5, json-report-1.5.0, metadata-3.1.1
+collected 1000 items
+
+test_simple.py ......................................................... [  5%]
+........................................................................ [ 12%]
+........................................................................ [ 20%]
+........................................................................ [ 27%]
+........................................................................ [ 34%]
+........................................................................ [ 41%]
+........................................................................ [ 48%]
+........................................................................ [ 56%]
+........................................................................ [ 63%]
+........................................................................ [ 70%]
+........................................................................ [ 77%]
+........................................................................ [ 84%]
+........................................................................ [ 92%]
+........................................................................ [ 99%]
+.......                                                                  [100%]
+
+--- generated xml file: /tmp/nix-shell.kU6lDe/tmp.fl45O8FLjb/full-report.xml ---
+============================= 1000 passed in 0.65s =============================
+pytest test duration in ms=806
+
+== optimized run ==
+description=This run makes use of the process that was developed in the bachelor thesis
+optimized_status=0
+optimized_total_duration_ms=579
+optimized_tests=200
+-- optimized stderr --
+reported testcases by testDiscovery= 1000
+selected testcases by testAuditor=200
+-- selected tests --
+test_simple.py::test_simple[800]
+test_simple.py::test_simple[801]
+test_simple.py::test_simple[802]
+test_simple.py::test_simple[803]
+test_simple.py::test_simple[804]
+test_simple.py::test_simple[805]
+test_simple.py::test_simple[806]
+test_simple.py::test_simple[807]
+test_simple.py::test_simple[808]
+test_simple.py::test_simple[809]
+test_simple.py::test_simple[810]
+test_simple.py::test_simple[811]
+test_simple.py::test_simple[812]
+test_simple.py::test_simple[813]
+test_simple.py::test_simple[814]
+test_simple.py::test_simple[815]
+test_simple.py::test_simple[816]
+test_simple.py::test_simple[817]
+test_simple.py::test_simple[818]
+test_simple.py::test_simple[819]
+test_simple.py::test_simple[820]
+test_simple.py::test_simple[821]
+test_simple.py::test_simple[822]
+test_simple.py::test_simple[823]
+test_simple.py::test_simple[824]
+test_simple.py::test_simple[825]
+test_simple.py::test_simple[826]
+test_simple.py::test_simple[827]
+test_simple.py::test_simple[828]
+test_simple.py::test_simple[829]
+test_simple.py::test_simple[830]
+test_simple.py::test_simple[831]
+test_simple.py::test_simple[832]
+test_simple.py::test_simple[833]
+test_simple.py::test_simple[834]
+test_simple.py::test_simple[835]
+test_simple.py::test_simple[836]
+test_simple.py::test_simple[837]
+test_simple.py::test_simple[838]
+test_simple.py::test_simple[839]
+test_simple.py::test_simple[840]
+test_simple.py::test_simple[841]
+test_simple.py::test_simple[842]
+test_simple.py::test_simple[843]
+test_simple.py::test_simple[844]
+test_simple.py::test_simple[845]
+test_simple.py::test_simple[846]
+test_simple.py::test_simple[847]
+test_simple.py::test_simple[848]
+test_simple.py::test_simple[849]
+test_simple.py::test_simple[850]
+test_simple.py::test_simple[851]
+test_simple.py::test_simple[852]
+test_simple.py::test_simple[853]
+test_simple.py::test_simple[854]
+test_simple.py::test_simple[855]
+test_simple.py::test_simple[856]
+test_simple.py::test_simple[857]
+test_simple.py::test_simple[858]
+test_simple.py::test_simple[859]
+test_simple.py::test_simple[860]
+test_simple.py::test_simple[861]
+test_simple.py::test_simple[862]
+test_simple.py::test_simple[863]
+test_simple.py::test_simple[864]
+test_simple.py::test_simple[865]
+test_simple.py::test_simple[866]
+test_simple.py::test_simple[867]
+test_simple.py::test_simple[868]
+test_simple.py::test_simple[869]
+test_simple.py::test_simple[870]
+test_simple.py::test_simple[871]
+test_simple.py::test_simple[872]
+test_simple.py::test_simple[873]
+test_simple.py::test_simple[874]
+test_simple.py::test_simple[875]
+test_simple.py::test_simple[876]
+test_simple.py::test_simple[877]
+test_simple.py::test_simple[878]
+test_simple.py::test_simple[879]
+test_simple.py::test_simple[880]
+test_simple.py::test_simple[881]
+test_simple.py::test_simple[882]
+test_simple.py::test_simple[883]
+test_simple.py::test_simple[884]
+test_simple.py::test_simple[885]
+test_simple.py::test_simple[886]
+test_simple.py::test_simple[887]
+test_simple.py::test_simple[888]
+test_simple.py::test_simple[889]
+test_simple.py::test_simple[890]
+test_simple.py::test_simple[891]
+test_simple.py::test_simple[892]
+test_simple.py::test_simple[893]
+test_simple.py::test_simple[894]
+test_simple.py::test_simple[895]
+test_simple.py::test_simple[896]
+test_simple.py::test_simple[897]
+test_simple.py::test_simple[898]
+test_simple.py::test_simple[899]
+test_simple.py::test_simple[900]
+test_simple.py::test_simple[901]
+test_simple.py::test_simple[902]
+test_simple.py::test_simple[903]
+test_simple.py::test_simple[904]
+test_simple.py::test_simple[905]
+test_simple.py::test_simple[906]
+test_simple.py::test_simple[907]
+test_simple.py::test_simple[908]
+test_simple.py::test_simple[909]
+test_simple.py::test_simple[910]
+test_simple.py::test_simple[911]
+test_simple.py::test_simple[912]
+test_simple.py::test_simple[913]
+test_simple.py::test_simple[914]
+test_simple.py::test_simple[915]
+test_simple.py::test_simple[916]
+test_simple.py::test_simple[917]
+test_simple.py::test_simple[918]
+test_simple.py::test_simple[919]
+test_simple.py::test_simple[920]
+test_simple.py::test_simple[921]
+test_simple.py::test_simple[922]
+test_simple.py::test_simple[923]
+test_simple.py::test_simple[924]
+test_simple.py::test_simple[925]
+test_simple.py::test_simple[926]
+test_simple.py::test_simple[927]
+test_simple.py::test_simple[928]
+test_simple.py::test_simple[929]
+test_simple.py::test_simple[930]
+test_simple.py::test_simple[931]
+test_simple.py::test_simple[932]
+test_simple.py::test_simple[933]
+test_simple.py::test_simple[934]
+test_simple.py::test_simple[935]
+test_simple.py::test_simple[936]
+test_simple.py::test_simple[937]
+test_simple.py::test_simple[938]
+test_simple.py::test_simple[939]
+test_simple.py::test_simple[940]
+test_simple.py::test_simple[941]
+test_simple.py::test_simple[942]
+test_simple.py::test_simple[943]
+test_simple.py::test_simple[944]
+test_simple.py::test_simple[945]
+test_simple.py::test_simple[946]
+test_simple.py::test_simple[947]
+test_simple.py::test_simple[948]
+test_simple.py::test_simple[949]
+test_simple.py::test_simple[950]
+test_simple.py::test_simple[951]
+test_simple.py::test_simple[952]
+test_simple.py::test_simple[953]
+test_simple.py::test_simple[954]
+test_simple.py::test_simple[955]
+test_simple.py::test_simple[956]
+test_simple.py::test_simple[957]
+test_simple.py::test_simple[958]
+test_simple.py::test_simple[959]
+test_simple.py::test_simple[960]
+test_simple.py::test_simple[961]
+test_simple.py::test_simple[962]
+test_simple.py::test_simple[963]
+test_simple.py::test_simple[964]
+test_simple.py::test_simple[965]
+test_simple.py::test_simple[966]
+test_simple.py::test_simple[967]
+test_simple.py::test_simple[968]
+test_simple.py::test_simple[969]
+test_simple.py::test_simple[970]
+test_simple.py::test_simple[971]
+test_simple.py::test_simple[972]
+test_simple.py::test_simple[973]
+test_simple.py::test_simple[974]
+test_simple.py::test_simple[975]
+test_simple.py::test_simple[976]
+test_simple.py::test_simple[977]
+test_simple.py::test_simple[978]
+test_simple.py::test_simple[979]
+test_simple.py::test_simple[980]
+test_simple.py::test_simple[981]
+test_simple.py::test_simple[982]
+test_simple.py::test_simple[983]
+test_simple.py::test_simple[984]
+test_simple.py::test_simple[985]
+test_simple.py::test_simple[986]
+test_simple.py::test_simple[987]
+test_simple.py::test_simple[988]
+test_simple.py::test_simple[989]
+test_simple.py::test_simple[990]
+test_simple.py::test_simple[991]
+test_simple.py::test_simple[992]
+test_simple.py::test_simple[993]
+test_simple.py::test_simple[994]
+test_simple.py::test_simple[995]
+test_simple.py::test_simple[996]
+test_simple.py::test_simple[997]
+test_simple.py::test_simple[998]
+test_simple.py::test_simple[999]
+
+report from testExecution:
+============================= test session starts ==============================
+platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0
+rootdir: /home/ruben/dev/bachelor/project/benchmark/src/bench_medium_many_08
+collected 200 items
+
+test_simple.py ......................................................... [ 28%]
+........................................................................ [ 64%]
+.......................................................................  [100%]
+
+----------- generated xml file: /tmp/nix-shell.kU6lDe/tmp.s3Z9d6hS8V -----------
+============================= 200 passed in 0.17s ==============================
+pytest test duration in ms=384
+
+== summary ==
+full run total executed tests=1000
+full run total duration in ms=806
+full run exit status=0
+
+optimized run total executed tests=200
+optimized run total duration in ms=579
+optimized run exit status=0
+optimized to full run relation=0.7184
+
+benchmark terminated with error=false
